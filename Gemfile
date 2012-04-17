@@ -25,5 +25,8 @@ group :development, :test do
   gem 'poltergeist', '~> 0.6.0'
   gem 'launchy', '~> 2.1.0'
   gem 'factory_girl_rails', '~> 3.1.0'
+  gem 'spork', '~> 0.9.0'
+  gem 'valid_attribute'
+  gem 'capybara-webkit'
 end
 
