@@ -55,11 +55,8 @@ Spork.prefork do
     # instead of true.
     config.use_transactional_fixtures = true
 
-    # check phantomjs availability to use poltergeist driver
-    js_driver = system("which phantomjs > /dev/null 2>&1") ? :poltergeist : :webkit
-
     config.before :each do
-      Capybara.current_driver = js_driver if example.metadata[:javascript]
+      Capybara.current_driver = :poltergeist
     end
 
     # If true, the base class of anonymous controllers will be inferred
@@ -76,4 +73,3 @@ Spork.each_run do
 
   FactoryGirl.reload
 end
-
