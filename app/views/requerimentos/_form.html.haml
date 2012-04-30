@@ -1,0 +1,36 @@
+= semantic_form_for @requerimento do |f|
+  -if @requerimento.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@requerimento.errors.count, "error")} prohibited this requerimento from being saved:"
+      %ul
+        - @requerimento.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = "Data de Criação: " + Date.today.strftime("%d/%m/%y")
+    = f.inputs do
+      = f.input :numero_protocolo
+      = f.input :setor, :as => :select,
+        :collection => Setor.all.map {|s| [s.nome] }, :label => "Local de Criação", :include_blank => false
+
+    = f.inputs 'Solicitantes' do
+      .field
+        = f.input :requerente, :as => :select, :collection => Solicitante.all.map {|solicitante| [solicitante.nome] }, :include_blank => false
+      .field
+        = f.input :interessado, :as => :select,
+          :collection => Solicitante.all.map {|solicitante| [solicitante.nome] },
+          :include_blank => false
+
+    = f.inputs 'Lançamento' do
+      .field
+        = f.input :destino_inicial, :as => :select, :collection => Setor.all.map {|setor| [setor.nome] }, :include_blank => false, :label => "Destino Inicial"
+        = f.input :tipo_solicitacao, :as => :select,
+          :collection => Solicitacao.all.map {|solicitacao| [solicitacao.tipo] },
+          :include_blank => false, :label => "Tipo de Solicitação"
+
+    = f.inputs :conteudo
+
+
+  .actions
+    = f.submit 'Save'
+

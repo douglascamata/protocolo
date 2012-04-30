@@ -1,0 +1,31 @@
+%p#notice= notice
+
+%p
+  %b Numero protocolo:
+  = @requerimento.numero_protocolo
+%p
+  %b Data de Criação:
+  = @requerimento.created_at.strftime("%d/%m/%y")
+%p
+  %b Setor:
+  = @requerimento.setor
+%p
+  %b Requerente:
+  = @requerimento.requerente
+%p
+  %b Interessado:
+  = @requerimento.interessado
+%p
+  %b Tipo Solicitação:
+  = @requerimento.tipo_solicitacao
+%p
+  %b Destino Inicial:
+  = @requerimento.destino_inicial
+%p
+  %b Conteudo:
+  = @requerimento.conteudo
+
+= link_to 'Edit', edit_requerimento_path(@requerimento)
+\|
+= link_to 'Back', requerimentos_path
+
