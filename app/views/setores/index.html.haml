@@ -1,0 +1,20 @@
+%h1 Listing setores
+
+%table
+  %tr
+    %th Nome
+    %th Requerimento
+    %th
+    %th
+
+  - @setores.each do |setor|
+    %tr
+      %td= setor.nome
+      %td= link_to 'Show', setor
+      %td= link_to 'Edit', edit_setor_path(setor)
+      %td= link_to 'Destroy', setor, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Setor', new_setor_path
+
