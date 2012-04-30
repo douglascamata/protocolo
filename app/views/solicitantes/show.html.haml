@@ -1,0 +1,10 @@
+%p#notice= notice
+
+%p
+  %b Nome:
+  = @solicitante.nome
+
+= link_to 'Edit', edit_solicitante_path(@solicitante)
+\|
+= link_to 'Back', solicitantes_path
+
