@@ -56,7 +56,7 @@ Spork.prefork do
     config.use_transactional_fixtures = true
 
     config.before :each do
-      Capybara.current_driver = :poltergeist
+      Capybara.current_driver = :poltergeist if example.metadata[:javascript]
     end
 
     # If true, the base class of anonymous controllers will be inferred
