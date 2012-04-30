@@ -1,0 +1,24 @@
+%h1 Listando requerimentos
+
+%table
+  %tr
+    %th Numero protocolo
+    %th Conteudo
+    %th Data
+    %th
+    %th
+    %th
+
+  - @requerimentos.each do |requerimento|
+    %tr
+      %td= requerimento.numero_protocolo
+      %td= requerimento.conteudo
+      %td= requerimento.created_at.strftime("%d/%m/%y")
+      %td= link_to 'Show', requerimento
+      %td= link_to 'Edit', edit_requerimento_path(requerimento)
+      %td= link_to 'Destroy', requerimento, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Requerimento', new_requerimento_path
+

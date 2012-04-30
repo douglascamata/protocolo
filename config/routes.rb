@@ -1,5 +1,10 @@
 Protocolo::Application.routes.draw do
   root to: 'home#index'
+
+  resources :requerimentos
+  resources :setores
+  resources :solicitantes
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
