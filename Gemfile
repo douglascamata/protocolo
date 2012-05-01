@@ -24,7 +24,7 @@ group :development, :test do
   gem 'capybara', '~> 1.1.2'
   gem 'poltergeist', '~> 0.6.0'
   gem 'launchy', '~> 2.1.0'
-  gem 'factory_girl_rails', '~> 3.1.0'
+  gem 'factory_girl_rails', '~> 3.2.0'
   gem 'spork', '~> 0.9.0'
   gem 'valid_attribute', '~> 1.2.0'
   gem 'timecop', '~> 0.3.5'
