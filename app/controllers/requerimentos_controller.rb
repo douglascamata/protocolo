@@ -1,9 +1,10 @@
 class RequerimentosController < InheritedResources::Base
-
-  def new
-    @requerimento = Requerimento.new
-    @requerimento.numero_protocolo = Requerimento.gerar_numero_protocolo
+  def create
+    @requerimento = Requerimento.new(params[:requerimento])
+    if @requerimento.save
+      redirect_to @requerimento
+    else
+      render action: 'new'
+    end
   end
-
 end
-

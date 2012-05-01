@@ -9,7 +9,6 @@
   .field
     = "Data de Criação: " + Date.today.strftime("%d/%m/%y")
     = f.inputs do
-      = f.input :numero_protocolo
       = f.input :setor, :as => :select,
         :collection => Setor.all.map {|s| [s.nome] }, :label => "Local de Criação", :include_blank => false
 
@@ -33,4 +32,3 @@
 
   .actions
     = f.submit 'Save'
-
