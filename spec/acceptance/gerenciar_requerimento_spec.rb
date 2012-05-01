@@ -2,8 +2,8 @@
 
 require 'spec_helper'
 
-feature 'criação de requerimento' do
-  scenario 'criação de requerimento padrão' do
+feature 'gerenciar requerimento' do
+  scenario 'criação de requerimento' do
     FactoryGirl.create(:setor, nome: 'setor_1')
     FactoryGirl.create(:setor, nome: 'setor_2')
     FactoryGirl.create(:solicitante, nome: 'requerente_1')
