@@ -27,4 +27,5 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 3.1.0'
   gem 'spork', '~> 0.9.0'
   gem 'valid_attribute', '~> 1.2.0'
+  gem 'timecop', '~> 0.3.5'
 end
