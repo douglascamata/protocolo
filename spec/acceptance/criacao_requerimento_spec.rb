@@ -17,7 +17,7 @@ feature 'criação de requerimento' do
     select 'interessado_1', from: 'Interessado'
     select 'tipo_1', from: 'Tipo de Solicitação'
     select 'setor_2', from: 'Destino Inicial'
-    click_button 'Save'
+    click_button 'Salvar'
 
     page.should have_content 'setor_1'
     page.should have_content '00001/12'
@@ -29,4 +29,3 @@ feature 'criação de requerimento' do
     page.should have_content 'setor_2'
   end
 end
-
