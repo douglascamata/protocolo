@@ -15,6 +15,14 @@ before_script:
 notifications:
   recipients:
     - rmanhaes@gmail.com
+    - d.camata@gmail.com
+    - ebfjunior@gmail.com
+    - henrique.avulso@gmail.com
+    - thawan.fidelis@gmail.com
+    - annabell.brasil@gmail.com
+    - aride.moulin@gmail.com
+    - mariana_gualhano@hotmail.com
+    - lukspmarques@gmail.com
 
 branches:
   only:
