@@ -11,19 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120430002350) do
+ActiveRecord::Schema.define(:version => 20120502220127) do
 
   create_table "requerimentos", :force => true do |t|
     t.string   "numero_protocolo"
-    t.string   "requerente"
-    t.string   "interessado"
-    t.string   "setor"
-    t.string   "destino_inicial"
-    t.string   "tipo_solicitacao"
     t.text     "conteudo"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.integer  "requerente_id"
+    t.integer  "interessado_id"
+    t.integer  "setor_origem_id"
+    t.integer  "destino_inicial_id"
+    t.integer  "tipo_solicitacao_id"
   end
+
+  add_index "requerimentos", ["destino_inicial_id"], :name => "index_requerimentos_on_destino_inicial_id"
+  add_index "requerimentos", ["interessado_id"], :name => "index_requerimentos_on_interessado_id"
+  add_index "requerimentos", ["requerente_id"], :name => "index_requerimentos_on_requerente_id"
+  add_index "requerimentos", ["setor_origem_id"], :name => "index_requerimentos_on_setor_origem_id"
+  add_index "requerimentos", ["tipo_solicitacao_id"], :name => "index_requerimentos_on_tipo_solicitacao_id"
 
   create_table "setores", :force => true do |t|
     t.string   "nome"
@@ -31,14 +37,14 @@ ActiveRecord::Schema.define(:version => 20120430002350) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "solicitacoes", :force => true do |t|
-    t.string   "tipo"
+  create_table "solicitantes", :force => true do |t|
+    t.string   "nome"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  create_table "solicitantes", :force => true do |t|
-    t.string   "nome"
+  create_table "tipos_solicitacao", :force => true do |t|
+    t.string   "descricao"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

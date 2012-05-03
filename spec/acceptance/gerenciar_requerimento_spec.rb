@@ -8,7 +8,7 @@ feature 'gerenciar requerimento' do
     FactoryGirl.create(:setor, nome: 'setor_2')
     FactoryGirl.create(:solicitante, nome: 'requerente_1')
     FactoryGirl.create(:solicitante, nome: 'interessado_1')
-    FactoryGirl.create(:solicitacao, tipo: 'tipo_1')
+    FactoryGirl.create(:tipo_solicitacao, descricao: 'tipo_1')
 
     visit new_requerimento_path
     select 'setor_1', from: 'Local de Criação'

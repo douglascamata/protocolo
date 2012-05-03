@@ -8,19 +8,19 @@
   = @requerimento.created_at.strftime("%d/%m/%y")
 %p
   %b Setor:
-  = @requerimento.setor
+  = @requerimento.setor_origem.nome
 %p
   %b Requerente:
-  = @requerimento.requerente
+  = @requerimento.requerente.nome
 %p
   %b Interessado:
-  = @requerimento.interessado
+  = @requerimento.interessado.try(:nome)
 %p
   %b Tipo Solicitação:
-  = @requerimento.tipo_solicitacao
+  = @requerimento.tipo_solicitacao.descricao
 %p
   %b Destino Inicial:
-  = @requerimento.destino_inicial
+  = @requerimento.destino_inicial.nome
 %p
   %b Conteudo:
   = @requerimento.conteudo

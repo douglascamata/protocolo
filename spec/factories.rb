@@ -7,19 +7,18 @@ FactoryGirl.define do
     sequence(:nome) {|n| "Nome#{n}" }
   end
 
-  factory :solicitacao do
-    sequence(:tipo) {|n| "Tipo_#{n}" }
+  factory :tipo_solicitacao do
+    sequence(:descricao) {|n| "Tipo_#{n}" }
   end
 
   factory :requerimento do
-    setor { [FactoryGirl.create(:setor)] }
-    requerente { [FactoryGirl.create(:solicitante)] }
-    interessado { [FactoryGirl.create(:solicitante)] }
-    destino_inicial { [FactoryGirl.create(:setor)] }
-    tipo_solicitacao { [FactoryGirl.create(:solicitacao)] }
+    setor_origem { FactoryGirl.create(:setor) }
+    requerente { FactoryGirl.create(:solicitante) }
+    interessado { FactoryGirl.create(:solicitante) }
+    destino_inicial { FactoryGirl.create(:setor) }
+    tipo_solicitacao
     sequence(:numero_protocolo) {|n| "#{n}/12" }
     conteudo "MeuConteudo"
   end
 
 end
-
