@@ -4,8 +4,10 @@
 # (all these examples are active by default):
  ActiveSupport::Inflector.inflections do |inflect|
    inflect.irregular 'setor', 'setores'
-   inflect.irregular 'solicitacao', 'solicitacoes'
 
+   inflect.plural /acao$/i, 'acoes'
+   inflect.singular /acoes$/i, 'acao'
+   
    inflect.irregular 'tipo_solicitacao', 'tipos_solicitacao'
    inflect.irregular 'TipoSolicitacao', 'TiposSolicitacao'
  end
