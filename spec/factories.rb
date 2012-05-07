@@ -16,7 +16,7 @@ FactoryGirl.define do
     requerente { FactoryGirl.create(:solicitante) }
     interessado { FactoryGirl.create(:solicitante) }
     destino_inicial { FactoryGirl.create(:setor) }
-    tipo_solicitacao
+    tipo_solicitacao { FactoryGirl.create(:tipo_solicitacao) }
     sequence(:numero_protocolo) {|n| "#{n}/12" }
     conteudo "MeuConteudo"
   end
