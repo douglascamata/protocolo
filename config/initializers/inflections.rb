@@ -5,8 +5,8 @@
  ActiveSupport::Inflector.inflections do |inflect|
    inflect.irregular 'setor', 'setores'
 
-   inflect.plural /acao$/i, 'acoes'
-   inflect.singular /acoes$/i, 'acao'
+   inflect.irregular 'solicitacao', 'solicitacoes'
+   inflect.irregular 'tramitacao', 'tramitacoes'
    
    inflect.irregular 'tipo_solicitacao', 'tipos_solicitacao'
    inflect.irregular 'TipoSolicitacao', 'TiposSolicitacao'
