@@ -8,6 +8,7 @@ class Requerimento < ActiveRecord::Base
   belongs_to :requerente, class_name: 'Solicitante'
   belongs_to :interessado, class_name: 'Solicitante'
   belongs_to :tipo_solicitacao
+  has_and_belongs_to_many :tramitacoes
 
   validates_presence_of :conteudo, :setor_origem, :requerente,
                         :numero_protocolo, :destino_inicial, :tipo_solicitacao

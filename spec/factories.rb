@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :setor do
-    sequence(:nome) {|n| "Nome#{n}" }
+    sequence(:nome) {|n| "Setor_#{n}" }
   end
 
   factory :solicitante do
@@ -19,6 +19,9 @@ FactoryGirl.define do
     tipo_solicitacao
     sequence(:numero_protocolo) {|n| "#{n}/12" }
     conteudo "MeuConteudo"
+  end
+
+  factory :tramitacao do
   end
 
 end

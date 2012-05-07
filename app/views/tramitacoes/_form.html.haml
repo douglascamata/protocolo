@@ -1,0 +1,16 @@
+= form_for @tramitacao do |f|
+  -if @tramitacao.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@tramitacao.errors.count, "error")} prohibited this tramitacao from being saved:"
+      %ul
+        - @tramitacao.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :setor_origem_id
+    = f.number_field :setor_origem_id
+  .field
+    = f.label :setor_destino_id
+    = f.number_field :setor_destino_id
+  .actions
+    = f.submit 'Save'
