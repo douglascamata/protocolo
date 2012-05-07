@@ -5,4 +5,6 @@ class Tramitacao < ActiveRecord::Base
   belongs_to :setor_destino, class_name: 'Setor'
 
   has_and_belongs_to_many :requerimentos
+
+  validates_presence_of :setor_destino, :setor_origem, :requerimentos
 end
