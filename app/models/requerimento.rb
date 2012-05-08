@@ -16,6 +16,15 @@ class Requerimento < ActiveRecord::Base
 
   before_validation :gerar_numero_protocolo
 
+  def self.filtrados
+    requerimentos_filtrados =[]
+    Setor.all.size.times do |n|
+      requerimentos_filtrados[n] = []
+      requerimentos_filtrados[n].concat(Requerimento.all.select { |r| r.setor_origem_id == n })
+    end
+    requerimentos_filtrados.delete_if{|r| r == []}
+  end
+
   private
 
   def gerar_numero_protocolo
