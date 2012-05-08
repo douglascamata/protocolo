@@ -8,8 +8,9 @@ feature 'enviar requerimentos', javascript: true do
     visit new_tramitacao_path
 
     select 'Setor_1', from: 'Setor de origem'
-    page.should have_content '00001/12'
-    page.should_not have_content '00002/12'
+    
+    find_field('00001/12').visible?.should be_true 
+    find_field('00002/12').visible?.should be_false 
 
     select 'Setor_2', from: 'Setor de destino'
     check '00001/12'
@@ -17,5 +18,6 @@ feature 'enviar requerimentos', javascript: true do
     click_button 'Enviar'
 
     page.should have_content 'Processos enviados.'
-  end   
+  end
 end
+

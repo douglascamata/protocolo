@@ -16,10 +16,12 @@ describe Requerimento do
 
   context 'ações de classe' do
     it 'deve retornar os requerimentos filtrados por setor de origem' do
-      2.times{FactoryGirl.create :requerimento}
+      setor1 = FactoryGirl.create :setor
+      setor2 = FactoryGirl.create :setor
+      3.times{FactoryGirl.create :requerimento, setor_origem: setor1}
+      3.times{FactoryGirl.create :requerimento, setor_origem: setor2}
 
-      # Requerimento.filtrados.should include [Requerimento.first] and [Requerimento.last]
-      #não faço ideia o pq, mas esse metodo não funciona aqui ¬¬"
+      Requerimento.filtrados.should include(Requerimento.first(3),Requerimento.last(3))
     end
   end
 end
