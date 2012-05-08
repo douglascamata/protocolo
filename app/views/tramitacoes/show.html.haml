@@ -2,10 +2,16 @@
 
 %p
   %b Setor origem:
-  = @tramitacao.setor_origem_id
+  = @tramitacao.setor_origem.nome
 %p
   %b Setor destino:
-  = @tramitacao.setor_destino_id
+  = @tramitacao.setor_destino.nome
+
+%p
+  %b Requerimentos:
+  - for requerimento in @tramitacao.requerimentos
+    %p
+      = requerimento.numero_protocolo
 
   = link_to 'Back', tramitacoes_path
 
