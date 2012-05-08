@@ -1,8 +1,7 @@
 #encoding: utf-8
 require 'spec_helper'
-
 #foi assumido q processos = requerimentos
-feature 'enviar requerimentos' do
+feature 'enviar requerimentos', javascript: true do
   scenario 'nova tramitação sem usuario destino com apenas 1 processo' do
     2.times{FactoryGirl.create :requerimento}
     
@@ -18,5 +17,5 @@ feature 'enviar requerimentos' do
     click_button 'Enviar'
 
     page.should have_content 'Processos enviados.'
-  end
+  end   
 end
