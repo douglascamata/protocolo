@@ -3,7 +3,11 @@ require 'spec_helper'
 #foi assumido q processos = requerimentos
 feature 'enviar requerimentos', javascript: true do
   scenario 'nova tramitação sem usuario destino com apenas 1 processo' do
-    2.times{FactoryGirl.create :requerimento}
+    setor_1 = FactoryGirl.create :setor, nome: 'Setor_1'
+    setor_2 = FactoryGirl.create :setor, nome: 'Setor_2'
+    
+    FactoryGirl.create :requerimento, setor_origem: setor_1
+    FactoryGirl.create :requerimento, setor_origem: setor_2
     
     visit new_tramitacao_path
 
