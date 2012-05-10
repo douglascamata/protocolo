@@ -22,3 +22,13 @@
 %p
   %b Conteudo:
   = @requerimento.conteudo
+
+.tramitacoes 
+  Tramitações:
+  - for tramitacao in @requerimento.tramitacoes
+    .tramitacao
+      %p
+        %b Setor origem:
+        = tramitacao.setor_origem.nome
+        %b Setor destino:
+        = tramitacao.setor_destino.nome
