@@ -28,4 +28,24 @@ feature 'gerenciar requerimento' do
     page.should have_content 'tipo_1'
     page.should have_content 'setor_2'
   end
+
+  scenario 'requerimento deve ter conhecimento de toda a sua tramitação desde que foi criado' do
+    setor_1 = FactoryGirl.create(:setor, nome: 'setor_1')
+    setor_2 = FactoryGirl.create(:setor, nome: 'setor_2')
+    setor_3 = FactoryGirl.create(:setor, nome: 'setor_3')
+    setor_4 = FactoryGirl.create(:setor, nome: 'setor_4')
+    requerimento = FactoryGirl.create(:requerimento, setor_origem: setor_1, destino_inicial: setor_4)
+
+    FactoryGirl.create :tramitacao, setor_origem: setor_1, setor_destino: setor_2, requerimentos: [requerimento]
+    FactoryGirl.create :tramitacao, setor_origem: setor_2, setor_destino: setor_3, requerimentos: [requerimento]
+    FactoryGirl.create :tramitacao, setor_origem: setor_3, setor_destino: setor_4, requerimentos: [requerimento]
+
+    visit requerimento_path(requerimento)
+    page.should have_content '00001/12'    
+    page.should have_content 'Tramitações'
+    page.should have_content 'setor_1'
+    page.should have_content 'setor_2'
+    page.should have_content 'setor_3'
+    page.should have_content 'setor_4'
+  end
 end
