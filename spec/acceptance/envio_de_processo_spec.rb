@@ -22,6 +22,9 @@ feature 'enviar requerimentos', javascript: true do
     click_button 'Enviar'
 
     page.should have_content 'Processos enviados.'
+    page.should have_content 'Setor_1'
+    page.should have_content 'Setor_2'
+    page.should have_content '00001/12'
   end
 end
 
