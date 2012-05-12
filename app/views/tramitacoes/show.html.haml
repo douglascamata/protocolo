@@ -1,5 +1,3 @@
-%p#notice= notice
-
 %p
   %b Setor origem:
   = @tramitacao.setor_origem.nome
@@ -12,6 +10,4 @@
   - for requerimento in @tramitacao.requerimentos
     %p
       = requerimento.numero_protocolo
-
-  = link_to 'Back', tramitacoes_path
 

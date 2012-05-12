@@ -1,6 +1,4 @@
 Protocolo::Application.routes.draw do
-  resources :tramitacoes
-
   root to: 'home#index'
 
   resources :requerimentos, only: [:new, :create, :show]
