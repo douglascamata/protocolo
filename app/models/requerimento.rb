@@ -8,7 +8,7 @@ class Requerimento < ActiveRecord::Base
   belongs_to :requerente, class_name: 'Solicitante'
   belongs_to :interessado, class_name: 'Solicitante'
   belongs_to :tipo_solicitacao
-  has_and_belongs_to_many :tramitacoes
+  has_many :tramitacoes
 
   validates_presence_of :conteudo, :setor_origem, :requerente,
                         :numero_protocolo, :destino_inicial, :tipo_solicitacao
@@ -16,8 +16,12 @@ class Requerimento < ActiveRecord::Base
 
   before_validation :gerar_numero_protocolo
 
-  def self.filtrados
-    Setor.all.map{|setor| Requerimento.all.select{ |r| r.setor_origem == setor} }.delete_if{|a| a == []}
+  def self.filtrados_por_setor
+    filtro = {}
+    Setor.all.each do |setor| 
+      filtro[setor.id] = Requerimento.all.map{ |requerimento| requerimento.id if requerimento.setor_origem == setor}.delete_if{|requerimento| requerimento == nil} 
+    end
+    return filtro
   end
 
   private

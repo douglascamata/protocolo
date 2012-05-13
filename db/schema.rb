@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120507184921) do
+ActiveRecord::Schema.define(:version => 20120510201535) do
 
   create_table "requerimentos", :force => true do |t|
     t.string   "numero_protocolo"
@@ -30,11 +30,6 @@ ActiveRecord::Schema.define(:version => 20120507184921) do
   add_index "requerimentos", ["requerente_id"], :name => "index_requerimentos_on_requerente_id"
   add_index "requerimentos", ["setor_origem_id"], :name => "index_requerimentos_on_setor_origem_id"
   add_index "requerimentos", ["tipo_solicitacao_id"], :name => "index_requerimentos_on_tipo_solicitacao_id"
-
-  create_table "requerimentos_tramitacoes", :force => true do |t|
-    t.integer "requerimento_id"
-    t.integer "tramitacao_id"
-  end
 
   create_table "setores", :force => true do |t|
     t.string   "nome"
@@ -59,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20120507184921) do
     t.integer  "setor_destino_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.integer  "requerimento_id"
   end
 
 end

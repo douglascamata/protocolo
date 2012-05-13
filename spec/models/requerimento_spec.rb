@@ -24,4 +24,13 @@ describe Requerimento do
       Requerimento.filtrados.should include(Requerimento.first(3),Requerimento.last(3))
     end
   end
+
+  context 'relações' do
+    it 'Requerimento pode ou não ter varias tramitações' do
+      should have_valid(:tramitacoes).when([])
+
+      requerimento = FactoryGirl.create :requerimento
+      requerimento.tramitacoes.build.should_not be_nil
+    end
+  end
 end
