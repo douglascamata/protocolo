@@ -20,6 +20,7 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'database_cleaner', '~> 0.7.2'
   gem 'rspec-rails', '~> 2.9.0'
   gem 'capybara', '~> 1.1.2'
   gem 'poltergeist', '~> 0.6.0'
