@@ -18,12 +18,13 @@ describe Requerimento do
     it 'deve retornar os requerimentos filtrados por setor de origem' do
       setor1 = FactoryGirl.create :setor
       setor2 = FactoryGirl.create :setor
-      3.times{FactoryGirl.create :requerimento, setor_origem: setor1}
-      3.times{FactoryGirl.create :requerimento, setor_origem: setor2}
+      setor3 = FactoryGirl.create :setor
+      3.times{FactoryGirl.create :requerimento, setor_origem: setor1, destino_inicial: setor3}
+      3.times{FactoryGirl.create :requerimento, setor_origem: setor2, destino_inicial: setor3}
 
-      requerimentos_id = Requerimento.all.map{|requerimento| requerimento.id}
+      # requerimentos_id = Requerimento.all.map{|requerimento| requerimento.id}
 
-      Requerimento.filtrados_por_setor.should == {setor1.id => requerimentos_id.first(3), setor2.id => requerimentos_id.last(3)}
+      Requerimento.filtrados_por_setor.should == {setor1 => Requerimento.first(3), setor2 => Requerimento.last(3), setor3 => []}
     end
   end
 
