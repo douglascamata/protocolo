@@ -2,7 +2,9 @@ Protocolo::Application.routes.draw do
   root to: 'home#index'
 
   resources :requerimentos, only: [:new, :create, :show]
-  resources :tramitacoes, only: [:new, :create, :show]
+  resources :tramitacoes, only: [:new, :create, :show] do
+    get :atualizar_requerimentos, :on => :collection
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,0 +1,38 @@
+mudar_select_html();
+
+function mudar_select_html () {
+  options = $('.requerimentos option');
+  $('.requerimentos').html('');
+
+  $('#tramitacao_setor_origem_id').change(function  () {
+    setor_id = $(this).attr("value");
+    foo = [];
+    $("p.foo").text(setor_id);
+    requerimentos = requerimentos_para_setor_escolhido(setor_id);
+
+    $('li#tramitacao_requerimento_input').show();
+
+    options.each(function  (index, objeto) {
+        if ($.inArray(objeto.value, requerimentos) >= 0 ) {
+         foo.push(objeto);
+        };
+    });
+    $('.requerimentos').html(foo);
+  });
+};
+
+function requerimentos_para_setor_escolhido (setor) {
+  setores_requerimentos = [];
+  
+  <% @requerimentos_filtrados.each do |setor, lista_requerimentos| %>
+    setores_requerimentos.push(new Array(<%= setor %>, '<%= lista_requerimentos %>'));
+  <% end %>
+
+  // setores_requerimentos = Array do tipo [[setor_id,[requerimento1_id,requerimento2_id]], .... ]
+  for (var i = 0; i < setores_requerimentos.length; i++) {
+    if (setores_requerimentos[i][0] == setor) {
+      requerimentos = setores_requerimentos[i][1];
+    };
+  };
+  return requerimentos;
+};

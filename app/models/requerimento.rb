@@ -21,7 +21,7 @@ class Requerimento < ActiveRecord::Base
     Setor.all.each do |setor| 
       filtro[setor.id] = Requerimento.all.map{ |requerimento| requerimento.id if requerimento.setor_origem == setor}.delete_if{|requerimento| requerimento == nil} 
     end
-    return filtro
+    return filtro.delete_if{|key,value| value == []}
   end
 
   private

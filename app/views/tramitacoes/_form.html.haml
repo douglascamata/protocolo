@@ -3,8 +3,8 @@
   = f.input :setor_origem, label: 'Setor de origem', :as => :select, :collection => Setor.all.map{|setor| [setor.nome, setor.id]}
   = f.input :setor_destino, label: 'Setor de destino', :as => :select, :collection => Setor.all.map{|setor| [setor.nome, setor.id]}
 
-  - @requerimentos.each do |n|
-    = f.input :requerimentos, :wrapper_html => {:class => "from_setor_" + n.first.setor_origem_id.to_s}, :as => :check_boxes, collection: n.map{|n| [n.numero_protocolo, n.id]}
+  = f.input :requerimento, :as => :select, collection: Requerimento.all.map{|requerimento| [requerimento.numero_protocolo, requerimento.id]}, :input_html => { :class => "requerimentos" } 
+  
   = f.submit 'Enviar'
   
   

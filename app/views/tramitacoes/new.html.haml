@@ -3,3 +3,7 @@
 = render 'form'
 
 = link_to 'Back', tramitacoes_path
+
+//link remoto para actions .js
+= link_to 'foo', atualizar_requerimentos_tramitacoes_path(), remote: true, class: 'foo'
+%p.foo

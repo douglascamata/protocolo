@@ -36,9 +36,9 @@ feature 'gerenciar requerimento' do
     setor_4 = FactoryGirl.create(:setor, nome: 'setor_4')
     requerimento = FactoryGirl.create(:requerimento, setor_origem: setor_1, destino_inicial: setor_4)
 
-    FactoryGirl.create :tramitacao, setor_origem: setor_1, setor_destino: setor_2, requerimentos: [requerimento]
-    FactoryGirl.create :tramitacao, setor_origem: setor_2, setor_destino: setor_3, requerimentos: [requerimento]
-    FactoryGirl.create :tramitacao, setor_origem: setor_3, setor_destino: setor_4, requerimentos: [requerimento]
+    FactoryGirl.create :tramitacao, setor_origem: setor_1, setor_destino: setor_2, requerimento: requerimento
+    FactoryGirl.create :tramitacao, setor_origem: setor_2, setor_destino: setor_3, requerimento: requerimento
+    FactoryGirl.create :tramitacao, setor_origem: setor_3, setor_destino: setor_4, requerimento: requerimento
 
     visit requerimento_path(requerimento)
     page.should have_content '00001/12'    

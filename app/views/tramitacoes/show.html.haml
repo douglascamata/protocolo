@@ -6,8 +6,6 @@
   = @tramitacao.setor_destino.nome
 
 %p
-  %b Requerimentos:
-  - for requerimento in @tramitacao.requerimentos
-    %p
-      = requerimento.numero_protocolo
+  %b Requerimento
+  = @tramitacao.requerimento.numero_protocolo
 

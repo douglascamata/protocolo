@@ -21,7 +21,9 @@ describe Requerimento do
       3.times{FactoryGirl.create :requerimento, setor_origem: setor1}
       3.times{FactoryGirl.create :requerimento, setor_origem: setor2}
 
-      Requerimento.filtrados.should include(Requerimento.first(3),Requerimento.last(3))
+      requerimentos_id = Requerimento.all.map{|requerimento| requerimento.id}
+
+      Requerimento.filtrados_por_setor.should == {setor1.id => requerimentos_id.first(3), setor2.id => requerimentos_id.last(3)}
     end
   end
 
