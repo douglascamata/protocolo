@@ -19,7 +19,6 @@ Spork.prefork do
   require 'capybara/poltergeist'
   require 'valid_attribute'
   require 'cancan/matchers'
-  require 'database_cleaner'
 
   ## other requires to reduce (improve) test load-time
   # as test with script tooked from http://www.opinionatedprogrammer.com/2011/02/profiling-spork-for-faster-start-up-time/
@@ -58,20 +57,6 @@ Spork.prefork do
 
     config.before :each do
       Capybara.current_driver = :poltergeist if example.metadata[:javascript]
-    end
-
-    #configuração database_cleaner
-    config.before(:suite) do
-      DatabaseCleaner.strategy = :transaction
-      DatabaseCleaner.clean_with(:truncation)
-    end
-
-    config.before(:each) do
-      DatabaseCleaner.start
-    end
-
-    config.after(:each) do
-      DatabaseCleaner.clean
     end
 
     # If true, the base class of anonymous controllers will be inferred
