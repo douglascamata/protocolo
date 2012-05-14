@@ -36,7 +36,7 @@ Protocolo::Application.configure do
   config.active_support.deprecation = :stderr
 
   config.after_initialize do
-    t = Time.local(2012, 1, 1, 0, 0, 0)
+    t = Time.local(2012, 1, 1, 0, 0, 0, 0)
     Timecop.travel(t)
   end
 end
