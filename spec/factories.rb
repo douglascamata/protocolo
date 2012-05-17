@@ -24,4 +24,7 @@ FactoryGirl.define do
   factory :tramitacao do
   end
 
+  factory :despacho do
+  end
+
 end

@@ -48,4 +48,15 @@ feature 'gerenciar requerimento' do
     page.should have_content 'setor_3'
     page.should have_content 'setor_4'
   end
+
+  scenario 'requerimento deve ter conhecimento de seus despachos' do
+    requerimento = FactoryGirl.create(:requerimento)
+
+    FactoryGirl.create :despacho, conteudo: 'Algum conteudo.', requerimento: requerimento
+
+    visit requerimento_path(requerimento)
+    page.should have_content '00001/12'
+    page.should have_content 'Despachos'
+    page.should have_content 'Algum conteudo'
+  end
 end

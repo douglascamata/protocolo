@@ -31,5 +31,12 @@ describe Requerimento do
       requerimento = FactoryGirl.create :requerimento
       requerimento.tramitacoes.build.should_not be_nil
     end
+
+    it 'Requerimento pode ou não ter varios despachos' do
+      should have_valid(:despachos).when([])
+
+      requerimento = FactoryGirl.create :requerimento
+      requerimento.despachos.build.should_not be_nil
+    end
   end
 end
