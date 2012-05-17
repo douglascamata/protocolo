@@ -5,6 +5,7 @@ Protocolo::Application.routes.draw do
   resources :tramitacoes, only: [:new, :create, :show] do
     get :atualizar_requerimentos, :on => :collection
   end
+  resources :despachos, only: [:new, :create, :show]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
