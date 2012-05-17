@@ -1,0 +1,14 @@
+%p
+  %b Número de Protocolo:
+  = @despacho.requerimento.numero_protocolo
+%p
+  %b Data de Criação:
+  = @despacho.requerimento.created_at.strftime("%d/%m/%y")
+
+%p
+  %b Tipo Solicitação:
+  = @despacho.requerimento.tipo_solicitacao.descricao
+
+%p
+  %b Despacho:
+  = @despacho.conteudo
