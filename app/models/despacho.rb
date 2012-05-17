@@ -3,5 +3,5 @@ class Despacho < ActiveRecord::Base
 
   belongs_to :requerimento
 
-  validates_presence_of :conteudo
+  validates_presence_of :conteudo, :requerimento
 end
