@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
 
-gem 'devise', '~> 2.0.4'
+gem 'devise', '~> 2.1.0'
 gem 'cancan', '~> 1.6.7'
 
 gem 'pg', '~> 0.13.2'
@@ -20,11 +20,11 @@ group :assets do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 2.9.0'
+  gem 'rspec-rails', '~> 2.10.0'
   gem 'capybara', '~> 1.1.2'
   gem 'poltergeist', '~> 0.6.0'
   gem 'launchy', '~> 2.1.0'
-  gem 'factory_girl_rails', '~> 3.2.0'
+  gem 'factory_girl_rails', '~> 3.3.0'
   gem 'spork', '~> 0.9.0'
   gem 'valid_attribute', '~> 1.2.0'
   gem 'timecop', '~> 0.3.5'
