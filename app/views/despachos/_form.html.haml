@@ -1,7 +1,7 @@
 = semantic_form_for @despacho do |f|
-  
+
   = f.input :conteudo
 
-  = f.input :requerimento, :as => :select, collection: Requerimento.all.map{|requerimento| [requerimento.numero_protocolo, requerimento.id]}, :input_html => { :class => "requerimentos" }
-  
+  = f.input :processo, :as => :select, collection: processo.all.map{|processo| [processo.numero_protocolo, processo.id]}, :input_html => { :class => "processos" }
+
   = f.submit 'Enviar'

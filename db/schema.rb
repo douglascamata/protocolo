@@ -11,16 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120514225648) do
+ActiveRecord::Schema.define(:version => 20120519174307) do
 
   create_table "despachos", :force => true do |t|
     t.text     "conteudo"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-    t.integer  "requerimento_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "processo_id"
   end
 
-  create_table "requerimentos", :force => true do |t|
+  create_table "processos", :force => true do |t|
     t.string   "numero_protocolo"
     t.text     "conteudo"
     t.datetime "created_at",          :null => false
@@ -32,11 +32,11 @@ ActiveRecord::Schema.define(:version => 20120514225648) do
     t.integer  "tipo_solicitacao_id"
   end
 
-  add_index "requerimentos", ["destino_inicial_id"], :name => "index_requerimentos_on_destino_inicial_id"
-  add_index "requerimentos", ["interessado_id"], :name => "index_requerimentos_on_interessado_id"
-  add_index "requerimentos", ["requerente_id"], :name => "index_requerimentos_on_requerente_id"
-  add_index "requerimentos", ["setor_origem_id"], :name => "index_requerimentos_on_setor_origem_id"
-  add_index "requerimentos", ["tipo_solicitacao_id"], :name => "index_requerimentos_on_tipo_solicitacao_id"
+  add_index "processos", ["destino_inicial_id"], :name => "index_requerimentos_on_destino_inicial_id"
+  add_index "processos", ["interessado_id"], :name => "index_requerimentos_on_interessado_id"
+  add_index "processos", ["requerente_id"], :name => "index_requerimentos_on_requerente_id"
+  add_index "processos", ["setor_origem_id"], :name => "index_requerimentos_on_setor_origem_id"
+  add_index "processos", ["tipo_solicitacao_id"], :name => "index_requerimentos_on_tipo_solicitacao_id"
 
   create_table "setores", :force => true do |t|
     t.string   "nome"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(:version => 20120514225648) do
     t.integer  "setor_destino_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
-    t.integer  "requerimento_id"
+    t.integer  "processo_id"
   end
 
 end

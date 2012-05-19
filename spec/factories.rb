@@ -11,7 +11,7 @@ FactoryGirl.define do
     sequence(:descricao) {|n| "Tipo_#{n}" }
   end
 
-  factory :requerimento do
+  factory :processo do
     setor_origem { FactoryGirl.create(:setor) }
     requerente { FactoryGirl.create(:solicitante) }
     interessado { FactoryGirl.create(:solicitante) }

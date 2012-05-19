@@ -1,4 +1,4 @@
-class Requerimento < ActiveRecord::Base
+class Processo < ActiveRecord::Base
   attr_accessible :conteudo, :setor_origem, :requerente, :interessado,
                   :destino_inicial, :tipo_solicitacao, :setor_origem_id,
                   :requerente_id, :interessado_id, :destino_inicial_id,
@@ -19,8 +19,8 @@ class Requerimento < ActiveRecord::Base
 
   def self.filtrados_por_setor
     filtro = {}
-    Setor.all.each do |setor| 
-      filtro[setor] = Requerimento.all.map{ |requerimento| requerimento if requerimento.setor_atual == setor}.delete_if{|requerimento| requerimento == nil} 
+    Setor.all.each do |setor|
+      filtro[setor] = self.all.map{ |processo| processo if processo.setor_atual == setor}.delete_if{|processo| processo == nil}
     end
     return filtro
   end

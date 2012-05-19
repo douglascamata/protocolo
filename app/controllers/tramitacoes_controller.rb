@@ -9,8 +9,8 @@ class TramitacoesController < InheritedResources::Base
     create!(:notice => "Processos enviados.")
   end
 
-  def atualizar_requerimentos
-    @requerimentos_filtrados = Requerimento.filtrados_por_setor
+  def atualizar_processos
+    @processos_filtrados = Processo.filtrados_por_setor
     respond_to :js
   end
 end

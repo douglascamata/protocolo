@@ -1,31 +1,31 @@
 %p
   %b Numero protocolo:
-  = @requerimento.numero_protocolo
+  = @processo.numero_protocolo
 %p
   %b Data de Criação:
-  = @requerimento.created_at.strftime("%d/%m/%y")
+  = @processo.created_at.strftime("%d/%m/%y")
 %p
   %b Setor:
-  = @requerimento.setor_origem.nome
+  = @processo.setor_origem.nome
 %p
   %b Requerente:
-  = @requerimento.requerente.nome
+  = @processo.requerente.nome
 %p
   %b Interessado:
-  = @requerimento.interessado.try(:nome)
+  = @processo.interessado.try(:nome)
 %p
   %b Tipo Solicitação:
-  = @requerimento.tipo_solicitacao.descricao
+  = @processo.tipo_solicitacao.descricao
 %p
   %b Destino Inicial:
-  = @requerimento.destino_inicial.nome
+  = @processo.destino_inicial.nome
 %p
   %b Conteudo:
-  = @requerimento.conteudo
+  = @processo.conteudo
 
-.tramitacoes 
+.tramitacoes
   Tramitações:
-  - for tramitacao in @requerimento.tramitacoes
+  - for tramitacao in @processo.tramitacoes
     .tramitacao
       %p
         %b Setor origem:
@@ -35,7 +35,7 @@
 
 .despachos
   Despachos:
-  - for despacho in @requerimento.despachos
+  - for despacho in @processo.despachos
     .despacho
     %p
       %b Conteudo:
