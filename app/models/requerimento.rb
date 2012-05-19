@@ -20,9 +20,13 @@ class Requerimento < ActiveRecord::Base
   def self.filtrados_por_setor
     filtro = {}
     Setor.all.each do |setor| 
-      filtro[setor] = Requerimento.all.map{ |requerimento| requerimento if requerimento.setor_origem == setor}.delete_if{|requerimento| requerimento == nil} 
+      filtro[setor] = Requerimento.all.map{ |requerimento| requerimento if requerimento.setor_atual == setor}.delete_if{|requerimento| requerimento == nil} 
     end
     return filtro
+  end
+
+  def setor_atual
+    self.tramitacoes.empty? ? self.setor_origem : self.tramitacoes.last.setor_destino
   end
 
   private
@@ -36,4 +40,5 @@ class Requerimento < ActiveRecord::Base
   def _numero
     numero_protocolo.split('/').first.to_i
   end
+
 end

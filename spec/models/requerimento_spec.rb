@@ -13,14 +13,30 @@ describe Requerimento do
   end
 
   context 'ações de classe' do
-    it 'deve retornar os requerimentos filtrados por setor de origem' do
+    it 'deve retornar os requerimentos filtrados por setor de atual' do
       setor1 = FactoryGirl.create :setor
       setor2 = FactoryGirl.create :setor
       setor3 = FactoryGirl.create :setor
-      3.times{FactoryGirl.create :requerimento, setor_origem: setor1, destino_inicial: setor3}
-      3.times{FactoryGirl.create :requerimento, setor_origem: setor2, destino_inicial: setor3}
+      
+      array_requerimentos_setor1 = []
+      array_requerimentos_setor2 = []
+      array_requerimentos_setor3 = []
 
-      Requerimento.filtrados_por_setor.should == {setor1 => Requerimento.first(3), setor2 => Requerimento.last(3), setor3 => []}
+      3.times{ array_requerimentos_setor1 << FactoryGirl.create(:requerimento, setor_origem: setor1, destino_inicial: setor3)}
+      3.times{ array_requerimentos_setor2 << FactoryGirl.create(:requerimento, setor_origem: setor2, destino_inicial: setor3)}
+
+      Requerimento.filtrados_por_setor.should == {setor1 => array_requerimentos_setor1, setor2 => array_requerimentos_setor2, setor3 => []}
+      
+      requerimento = FactoryGirl.create(:requerimento, setor_origem: setor1, destino_inicial: setor3)
+      Requerimento.filtrados_por_setor[setor1].should include requerimento
+
+      requerimento.tramitacoes.create(setor_origem: setor1, setor_destino: setor2)
+      Requerimento.filtrados_por_setor[setor1].should_not include requerimento
+      Requerimento.filtrados_por_setor[setor2].should include requerimento
+
+      requerimento.tramitacoes.create(setor_origem: setor2, setor_destino: setor3)
+      Requerimento.filtrados_por_setor[setor2].should_not include requerimento
+      Requerimento.filtrados_por_setor[setor3].should include requerimento
     end
   end
 
