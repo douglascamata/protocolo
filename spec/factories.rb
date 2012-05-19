@@ -12,11 +12,11 @@ FactoryGirl.define do
   end
 
   factory :processo do
-    setor_origem { FactoryGirl.create(:setor) }
-    requerente { FactoryGirl.create(:solicitante) }
-    interessado { FactoryGirl.create(:solicitante) }
-    destino_inicial { FactoryGirl.create(:setor) }
-    tipo_solicitacao { FactoryGirl.create(:tipo_solicitacao) }
+    setor_origem { create(:setor) }
+    requerente { create(:solicitante) }
+    interessado { create(:solicitante) }
+    destino_inicial { create(:setor) }
+    tipo_solicitacao { create(:tipo_solicitacao) }
     sequence(:numero_protocolo) {|n| "#{n}/12" }
     conteudo "MeuConteudo"
   end

@@ -4,11 +4,11 @@ require 'spec_helper'
 
 feature 'gerenciar processo' do
   scenario 'criação de processo' do
-    FactoryGirl.create(:setor, nome: 'setor_1')
-    FactoryGirl.create(:setor, nome: 'setor_2')
-    FactoryGirl.create(:solicitante, nome: 'requerente_1')
-    FactoryGirl.create(:solicitante, nome: 'interessado_1')
-    FactoryGirl.create(:tipo_solicitacao, descricao: 'tipo_1')
+    create(:setor, nome: 'setor_1')
+    create(:setor, nome: 'setor_2')
+    create(:solicitante, nome: 'requerente_1')
+    create(:solicitante, nome: 'interessado_1')
+    create(:tipo_solicitacao, descricao: 'tipo_1')
 
     visit new_processo_path
     select 'setor_1', from: 'Local de Criação'
@@ -30,15 +30,15 @@ feature 'gerenciar processo' do
   end
 
   scenario 'processo deve ter conhecimento de toda a sua tramitação desde que foi criado' do
-    setor_1 = FactoryGirl.create(:setor, nome: 'setor_1')
-    setor_2 = FactoryGirl.create(:setor, nome: 'setor_2')
-    setor_3 = FactoryGirl.create(:setor, nome: 'setor_3')
-    setor_4 = FactoryGirl.create(:setor, nome: 'setor_4')
-    processo = FactoryGirl.create(:processo, setor_origem: setor_1, destino_inicial: setor_4)
+    setor_1 = create(:setor, nome: 'setor_1')
+    setor_2 = create(:setor, nome: 'setor_2')
+    setor_3 = create(:setor, nome: 'setor_3')
+    setor_4 = create(:setor, nome: 'setor_4')
+    processo = create(:processo, setor_origem: setor_1, destino_inicial: setor_4)
 
-    FactoryGirl.create :tramitacao, setor_origem: setor_1, setor_destino: setor_2, processo: processo
-    FactoryGirl.create :tramitacao, setor_origem: setor_2, setor_destino: setor_3, processo: processo
-    FactoryGirl.create :tramitacao, setor_origem: setor_3, setor_destino: setor_4, processo: processo
+    create :tramitacao, setor_origem: setor_1, setor_destino: setor_2, processo: processo
+    create :tramitacao, setor_origem: setor_2, setor_destino: setor_3, processo: processo
+    create :tramitacao, setor_origem: setor_3, setor_destino: setor_4, processo: processo
 
     visit processo_path(processo)
     page.should have_content '00001/12'
@@ -50,9 +50,9 @@ feature 'gerenciar processo' do
   end
 
   scenario 'processo deve ter conhecimento de seus despachos' do
-    processo = FactoryGirl.create(:processo)
+    processo = create(:processo)
 
-    FactoryGirl.create :despacho, conteudo: 'Algum conteudo.', processo: processo
+    create :despacho, conteudo: 'Algum conteudo.', processo: processo
 
     visit processo_path(processo)
     page.should have_content '00001/12'

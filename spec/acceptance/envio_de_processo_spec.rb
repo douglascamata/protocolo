@@ -4,15 +4,15 @@ require 'spec_helper'
 
 feature 'enviar processos', javascript: true do
   background do
-    @setor_1 = FactoryGirl.create :setor, nome: 'Setor_1'
-    @setor_2 = FactoryGirl.create :setor, nome: 'Setor_2'
-    @setor_3 = FactoryGirl.create :setor, nome: 'Setor_3'
+    @setor_1 = create :setor, nome: 'Setor_1'
+    @setor_2 = create :setor, nome: 'Setor_2'
+    @setor_3 = create :setor, nome: 'Setor_3'
   end
 
   scenario 'nova tramitação sem usuario destino' do
 
-    FactoryGirl.create :processo, setor_origem: @setor_1, destino_inicial: @setor_3
-    FactoryGirl.create :processo, setor_origem: @setor_2, destino_inicial: @setor_3
+    create :processo, setor_origem: @setor_1, destino_inicial: @setor_3
+    create :processo, setor_origem: @setor_2, destino_inicial: @setor_3
 
     visit new_tramitacao_path
 
@@ -36,7 +36,7 @@ feature 'enviar processos', javascript: true do
   end
 
   scenario 'enviar um processo que já foi enviado uma ou mais vezes' do
-    processo = FactoryGirl.create :processo, setor_origem: @setor_1, destino_inicial: @setor_3
+    processo = create :processo, setor_origem: @setor_1, destino_inicial: @setor_3
     processo.tramitacoes.create(setor_origem: @setor_1, setor_destino: @setor_2)
 
     visit new_tramitacao_path
