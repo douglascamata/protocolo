@@ -7,4 +7,13 @@ describe Tramitacao do
     it {should_not have_valid(:setor_destino).when(nil) }
     it {should_not have_valid(:processo).when(nil) }
   end
+
+  it 'registra recebimento' do
+    tramitacao = create :tramitacao
+    tramitacao.should_not be_recebida
+    now = Time.now
+    Timecop.freeze(now) { tramitacao.registrar_recebimento }
+    tramitacao.should be_recebida
+    tramitacao.recebida_em.should == now
+  end
 end

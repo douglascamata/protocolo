@@ -22,6 +22,9 @@ FactoryGirl.define do
   end
 
   factory :tramitacao do
+    association(:setor_destino, factory: :setor)
+    association(:setor_origem, factory: :setor)
+    processo
   end
 
   factory :despacho do

@@ -12,6 +12,25 @@ describe Processo do
     end
   end
 
+  context 'workflow' do
+    let(:processo) { create :processo }
+
+    it 'possui estado inicial "criado"' do
+      processo.estado.should == 'criado'
+    end
+
+    context 'criado' do
+      it 'ao ser enviado, vai para "enviado"' do
+        expect { processo.enviar_para!(create :setor) }.
+          to change { processo.estado }.from('criado').to('enviado')
+      end
+
+      it 'nao pode ser recebido' do
+        expect { processo.receber! }.to raise_error
+      end
+    end
+  end
+
   context 'ações de classe' do
     it 'deve retornar os processos filtrados por setor de atual' do
       setor1 = create :setor

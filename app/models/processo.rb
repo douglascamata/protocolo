@@ -17,6 +17,26 @@ class Processo < ActiveRecord::Base
 
   before_validation :gerar_numero_protocolo
 
+  state_machine :estado, initial: :criado do
+    event :enviar_para do
+      transition [:criado, :recebido] => :enviado
+    end
+
+    event :receber do
+      transition :enviado => :recebido
+    end
+  end
+
+  def enviar_para(setor)
+    tramitacoes.create!(setor_origem: setor_atual, setor_destino: setor)
+    super
+  end
+
+  def receber
+    tramitacoes.last.registrar_recebimento
+    super
+  end
+
   def self.filtrados_por_setor
     filtro = {}
     Setor.all.each do |setor|

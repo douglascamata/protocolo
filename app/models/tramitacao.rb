@@ -6,4 +6,12 @@ class Tramitacao < ActiveRecord::Base
   belongs_to :processo
 
   validates_presence_of :setor_destino, :setor_origem, :processo
+
+  def registrar_recebimento
+    update_attribute(:recebida_em, Time.now)
+  end
+
+  def recebida?
+    recebida_em.present?
+  end
 end
