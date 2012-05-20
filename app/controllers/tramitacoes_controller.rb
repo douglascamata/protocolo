@@ -10,7 +10,7 @@ class TramitacoesController < InheritedResources::Base
   end
 
   def atualizar_processos
-    @processos_filtrados = Processo.filtrados_por_setor
+    @processos = Processo.filtrados_por_setor[Setor.find(params[:setor_id])]
     respond_to :js
   end
 end

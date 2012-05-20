@@ -1,6 +1,6 @@
 = semantic_form_for @tramitacao do |f|
   = f.input :setor_origem, label: 'Setor de origem', member_label: :nome
   = f.input :setor_destino, label: 'Setor de destino', member_label: :nome
-  = f.input :processo, member_label: :numero_protocolo,
+  = f.input :processo, member_label: :numero_protocolo, collection: [],
       :input_html => { :class => "processos" }
   = f.submit 'Enviar'

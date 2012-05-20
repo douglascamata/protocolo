@@ -1,36 +1,5 @@
-mudar_select_html();
-
-function mudar_select_html () {
-  options = $('.processos option');
-  $('.processos').html('');
-
-  $('#tramitacao_setor_origem_id').change(function  () {
-
-    setor_id = $(this).attr("value");
-    processos_filtrados = [];
-    lista_processos = processos_para_setor_escolhido(setor_id);
-
-    options.each(function  (index, objeto) {
-      for (var i = 0; i < lista_processos.length; i++) {
-        if (objeto.value == lista_processos[i]) {processos_filtrados.push(objeto);};
-      };
-    });
-    $('.processos').html(processos_filtrados);
-  });
-};
-
-function processos_para_setor_escolhido (setor_id) {
-  setores_processos = [];
-
-  <% @processos_filtrados.each do |setor, lista_processos| %>
-    setores_processos.push([<%= setor.id %>, <%= lista_processos.map{|r| r.id } %>]);
-  <% end %>
-
-  // setores_processos = Array do tipo [[setor_id,[processo1_id,processo2_id]], .... ]
-  for (var i = 0; i < setores_processos.length; i++) {
-    if (setores_processos[i][0] == setor_id) {
-      processos = setores_processos[i][1];
-    };
-  };
-  return processos;
-};
+var processos = $("#tramitacao_processo_id");
+processos.children().remove();
+<% @processos.each do |processo| %>
+  processos.append("<option value='<%= processo.id %>'><%= processo.numero_protocolo %></option>");
+<% end %>
