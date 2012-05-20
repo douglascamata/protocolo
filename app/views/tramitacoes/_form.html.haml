@@ -1,8 +1,6 @@
 = semantic_form_for @tramitacao do |f|
-
-  = f.input :setor_origem, label: 'Setor de origem', :as => :select, :collection => Setor.all.map{|setor| [setor.nome, setor.id]}
-  = f.input :setor_destino, label: 'Setor de destino', :as => :select, :collection => Setor.all.map{|setor| [setor.nome, setor.id]}
-
-  = f.input :processo, :as => :select, collection: Processo.all.map{|processo| [processo.numero_protocolo, processo.id]}, :input_html => { :class => "processos" }
-
+  = f.input :setor_origem, label: 'Setor de origem', member_label: :nome
+  = f.input :setor_destino, label: 'Setor de destino', member_label: :nome
+  = f.input :processo, member_label: :numero_protocolo,
+      :input_html => { :class => "processos" }
   = f.submit 'Enviar'

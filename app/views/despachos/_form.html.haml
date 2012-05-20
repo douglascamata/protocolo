@@ -2,6 +2,7 @@
 
   = f.input :conteudo
 
-  = f.input :processo, :as => :select, collection: processo.all.map{|processo| [processo.numero_protocolo, processo.id]}, :input_html => { :class => "processos" }
+  = f.input :processo, member_label: :numero_protocolo,
+      :input_html => { :class => "processos" }
 
   = f.submit 'Enviar'
