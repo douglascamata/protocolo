@@ -4,6 +4,6 @@ class IncluirEstadoEmProcessos < ActiveRecord::Migration
   end
 
   def down
-    remove_column :processos, :estados
+    remove_column :processos, :estado
   end
 end

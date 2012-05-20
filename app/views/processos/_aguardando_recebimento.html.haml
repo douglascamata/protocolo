@@ -1,0 +1,17 @@
+%fieldset
+  %legend Processos não recebidos
+
+  %table
+    %thead
+      %tr
+        %th Número
+        %th Origem
+        %th Enviado em
+        %th
+    %tbody
+      - @processos.each do |processo|
+        %tr
+          %td= processo.numero_protocolo
+          %td= processo.setor_atual.nome
+          %td= processo.ultima_tramitacao.enviada_em
+          %td= link_to 'Receber', receber_processo_path(processo), method: :put

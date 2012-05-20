@@ -57,5 +57,40 @@ describe Processo do
       Processo.filtrados_por_setor[setor2].should_not include processo
       Processo.filtrados_por_setor[setor3].should include processo
     end
+
+    it 'retorna processos aguardando recebimento em determinado setor' do
+      setor1, setor2 = create(:setor), create(:setor)
+      processo1 = criar_processo_enviado_para(setor1)
+      processo2 = criar_processo_enviado_para(setor1)
+      processo3 = criar_processo_enviado_para(setor2)
+      Processo.aguardando_recebimento_em(setor1).should =~ [processo1, processo2]
+      Processo.aguardando_recebimento_em(setor2).should == [processo3]
+    end
+  end
+
+  it 'retorna ultima tramitação' do
+    processo = build :processo
+    processo.tramitacoes << (ultima = stub_model(Tramitacao, enviada_em: 2.minutes.from_now))
+    processo.tramitacoes << stub_model(Tramitacao, enviada_em: Time.now)
+    processo.tramitacoes << stub_model(Tramitacao, enviada_em: 2.minutes.ago)
+    processo.ultima_tramitacao.should == ultima
+  end
+
+  describe 'enviar processo' do
+    before(:each) do
+      @processo = create :processo
+      @processo.setor_atual.should == @processo.setor_origem
+      @setor_destino = create :setor
+      @processo.should have(0).tramitacoes
+      @processo.enviar_para(@setor_destino)
+    end
+
+    it 'gera uma tramitação' do
+      @processo.should have(1).tramitacoes
+    end
+
+    it 'o setor atual passa a ser o setor destino do envio' do
+      @processo.setor_atual.should == @setor_destino
+    end
   end
 end

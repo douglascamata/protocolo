@@ -1,0 +1,7 @@
+%h1 Recebimento de processo
+
+%form{action: '#'}
+  = label_tag 'recebimento_setor', 'Destino atual'
+  = select_tag 'recebimento_setor', options_for_select([['', -1]] + @setores.map {|s| [s.nome, s.id] })
+
+#processos_aguardando_recebimento

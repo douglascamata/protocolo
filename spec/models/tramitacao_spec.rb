@@ -16,4 +16,13 @@ describe Tramitacao do
     tramitacao.should be_recebida
     tramitacao.recebida_em.should == now
   end
+
+  it 'possui data/hora de envio como o momento da criacao' do
+    tempo = Time.now
+    processo = create :processo
+    Timecop.freeze(tempo) do
+      processo.enviar_para(create :setor)
+    end
+    processo.tramitacoes.last.enviada_em.should == tempo
+  end
 end

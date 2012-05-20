@@ -14,4 +14,8 @@ class Tramitacao < ActiveRecord::Base
   def recebida?
     recebida_em.present?
   end
+
+  def enviada_em
+    created_at
+  end
 end

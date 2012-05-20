@@ -12,12 +12,12 @@ class Processo < ActiveRecord::Base
   has_many :despachos
 
   validates_presence_of :conteudo, :setor_origem, :requerente,
-                        :numero_protocolo, :destino_inicial, :tipo_solicitacao
+                        :destino_inicial, :tipo_solicitacao
   validates_uniqueness_of :numero_protocolo
 
-  before_validation :gerar_numero_protocolo
+  before_create :gerar_numero_protocolo
 
-  state_machine :estado, initial: :criado do
+  state_machine :estado, :initial => :criado do
     event :enviar_para do
       transition [:criado, :recebido] => :enviado
     end
@@ -47,6 +47,14 @@ class Processo < ActiveRecord::Base
 
   def setor_atual
     self.tramitacoes.empty? ? self.setor_origem : self.tramitacoes.last.setor_destino
+  end
+
+  def self.aguardando_recebimento_em(setor)
+    Processo.all.select {|p| p.setor_atual == setor }
+  end
+
+  def ultima_tramitacao
+    tramitacoes.sort_by(&:enviada_em).last
   end
 
   private

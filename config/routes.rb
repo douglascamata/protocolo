@@ -1,10 +1,20 @@
 Protocolo::Application.routes.draw do
   root to: 'home#index'
 
-  resources :processos, only: [:new, :create, :show]
+  resources :processos, only: [:new, :create, :show] do
+    collection do
+      get :receber
+      get :aguardando_recebimento
+    end
+    member do
+      put :receber
+    end
+  end
+
   resources :tramitacoes, only: [:new, :create, :show] do
     get :atualizar_processos, :on => :collection
   end
+
   resources :despachos, only: [:new, :create, :show]
 
   # The priority is based upon order of creation:
