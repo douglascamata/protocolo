@@ -39,20 +39,4 @@ describe Processo do
       Processo.filtrados_por_setor[setor3].should include processo
     end
   end
-
-  context 'relações' do
-    it 'processo pode ou não ter varias tramitações' do
-      should have_valid(:tramitacoes).when([])
-
-      processo = create :processo
-      processo.tramitacoes.build.should_not be_nil
-    end
-
-    it 'processo pode ou não ter varios despachos' do
-      should have_valid(:despachos).when([])
-
-      processo = create :processo
-      processo.despachos.build.should_not be_nil
-    end
-  end
 end
