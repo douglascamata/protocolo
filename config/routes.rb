@@ -5,6 +5,7 @@ Protocolo::Application.routes.draw do
     collection do
       get :receber
       get :aguardando_recebimento
+      get :encerrar
     end
     member do
       put :receber
