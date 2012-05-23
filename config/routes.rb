@@ -6,6 +6,7 @@ Protocolo::Application.routes.draw do
       get :receber
       get :aguardando_recebimento
       get :encerrar
+      get :buscar
     end
     member do
       put :receber

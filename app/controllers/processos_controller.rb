@@ -16,4 +16,12 @@ class ProcessosController < InheritedResources::Base
     @processos = Processo.aguardando_recebimento_em(Setor.find(params[:setor_id]))
     respond_to :js
   end
+
+  def encerrar
+  end
+
+  def buscar 
+    @processo = Processo.find_by_numero_protocolo(params[:numero_protocolo])
+    respond_to :js
+  end
 end

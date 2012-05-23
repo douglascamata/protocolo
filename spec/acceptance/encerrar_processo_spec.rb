@@ -11,6 +11,7 @@ feature "encerrar processo" do
     visit encerrar_processos_path
 
     fill_in 'Processo', with: '00001/12'
+    click_button 'Buscar'
 
     within_fieldset 'Processo' do
       page.should have_content '00001/12'
