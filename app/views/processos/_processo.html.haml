@@ -1,0 +1,24 @@
+%p
+  %b Numero protocolo:
+  = processo.numero_protocolo
+%p
+  %b Data de Criação:
+  = processo.created_at.strftime("%d/%m/%y")
+%p
+  %b Setor:
+  = processo.setor_origem.nome
+%p
+  %b Requerente:
+  = processo.requerente.nome
+%p
+  %b Interessado:
+  = processo.interessado.try(:nome)
+%p
+  %b Tipo Solicitação:
+  = processo.tipo_solicitacao.descricao
+%p
+  %b Destino Inicial:
+  = processo.destino_inicial.nome
+%p
+  %b Conteudo:
+  = processo.conteudo
