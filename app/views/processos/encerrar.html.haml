@@ -1,8 +1,8 @@
 %h1 Encerramento de processo
 
-%form{action: '#'}
-  = label_tag 'numero_protocolo', 'Processo'
-  = text_field_tag 'numero_protocolo'
-%button#buscar Buscar
+%form_para_buscar
+  %label{:for => "numero_protocolo"} Processo
+  %input#numero_protocolo{:name => "numero_protocolo", :type => "text"}
+  %button#buscar Buscar
 
 #processo_a_ser_encerrado

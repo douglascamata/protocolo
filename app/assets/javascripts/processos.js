@@ -6,6 +6,6 @@ $(document).ready(function() {
 
   $('button#buscar').click(function() {
     var numero_protocolo = $('input#numero_protocolo').attr("value");
-    $.get('buscar?numero_protocolo=' + numero_protocolo)
+    $.get('/processos/buscar?numero_protocolo=' + numero_protocolo);
   });
 });
