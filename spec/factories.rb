@@ -30,4 +30,8 @@ FactoryGirl.define do
   factory :despacho do
   end
 
+  factory :motivo do
+    nome "Motivo qualquer"
+  end
+
 end
