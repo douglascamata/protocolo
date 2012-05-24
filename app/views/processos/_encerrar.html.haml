@@ -1,0 +1,13 @@
+%fieldset
+  %legend Encerrar processo
+
+  = semantic_form_for processo do |f|
+    = "Data de encerramento: " + Date.today.strftime("%d/%m/%y")
+    
+    = "Local de arquivamento: " + processo.setor_atual.nome
+
+    = f.input :motivo, member_label: :nome
+
+    = f.input :observacoes, label: "Observações"
+
+    = f.submit 'Encerrar'

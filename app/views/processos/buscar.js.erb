@@ -1,2 +1,5 @@
 $('#processo_a_ser_encerrado').html(
   "<%= escape_javascript render @processo %>");
+
+$('#encerrar_processo').html(
+  "<%= escape_javascript render 'encerrar', processo: @processo %>");
