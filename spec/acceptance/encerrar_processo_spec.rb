@@ -29,6 +29,8 @@ feature "encerrar processo" do
       click_button 'Encerrar'
     end
 
-    page.should have_content 'Processo Encerrado.'
+    page.should have_content 'Processo encerrado.'
+    page.should have_content 'Encerrado em: ' + Date.today.strftime("%d/%m/%y")
+    page.should have_content 'Arquivado em: Setor 2' 
   end
 end
