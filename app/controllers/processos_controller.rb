@@ -5,8 +5,7 @@ class ProcessosController < InheritedResources::Base
     if params[:id] # PUT receber_processo_path(:id)
       processo = Processo.find(params[:id])
       processo.receber!
-      flash[:notice] = "Processo #{processo.numero_protocolo} recebido com sucesso"
-      redirect_to receber_processos_path
+      redirect_to receber_processos_path, notice: "Processo #{processo.numero_protocolo} recebido com sucesso"
     else # GET receber_processos_path
       @setores = Setor.all
     end
@@ -18,6 +17,12 @@ class ProcessosController < InheritedResources::Base
   end
 
   def encerrar
+    if params[:id]
+      processo = Processo.find(params[:id])        
+      processo.update_attributes(params[:processo])
+      processo.encerrar!
+      redirect_to processo_path(processo), notice: "Processo encerrado."
+    end
   end
 
   def buscar 

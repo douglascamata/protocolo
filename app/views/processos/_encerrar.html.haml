@@ -1,7 +1,7 @@
 %fieldset
   %legend Encerrar processo
 
-  = semantic_form_for processo do |f|
+  = semantic_form_for processo, url: encerrar_processo_path(processo) do |f|
     = "Data de encerramento: " + Date.today.strftime("%d/%m/%y")
     
     = "Local de arquivamento: " + processo.setor_atual.nome

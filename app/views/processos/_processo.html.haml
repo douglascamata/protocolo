@@ -25,3 +25,10 @@
   %p
     %b Conteudo:
     = processo.conteudo
+
+  %p
+    %b Encerrado em:
+    = processo.try(:data_hr_encerramento)
+  %p
+    %b Arquivado em:
+    = processo.setor_atual.try(:nome)

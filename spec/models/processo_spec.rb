@@ -29,6 +29,24 @@ describe Processo do
         expect { processo.receber! }.to raise_error
       end
     end
+
+    context "encerrado" do
+      before(:each) do
+        processo.enviar_para!(create :setor)
+        processo.receber!
+      end
+
+      it "vindo de recebido, vai para 'encerrado' " do
+        expect { processo.encerrar! }.
+          to change { processo.estado }.from('recebido').to('encerrado')
+      end
+
+      it "não muda de estado" do
+        processo.encerrar!
+        expect { processo.receber! }.to raise_error
+        expect { processo.enviar_para!( create :setor ) }.to raise_error
+      end
+    end
   end
 
   context 'ações de classe' do
@@ -39,7 +57,6 @@ describe Processo do
 
       array_processos_setor1 = []
       array_processos_setor2 = []
-      array_processos_setor3 = []
 
       3.times{ array_processos_setor1 << create(:processo, setor_origem: setor1, destino_inicial: setor3)}
       3.times{ array_processos_setor2 << create(:processo, setor_origem: setor2, destino_inicial: setor3)}
@@ -91,6 +108,25 @@ describe Processo do
 
     it 'o setor atual passa a ser o setor destino do envio' do
       @processo.setor_atual.should == @setor_destino
+    end
+  end
+
+  describe "encerrar" do
+    before(:each) do
+      @processo = create :processo
+      @setor_destino = create :setor
+      @processo.enviar_para(@setor_destino)
+      @processo.receber!
+      no_ano_e_hr(2013,5,10,15){ @processo.encerrar! }
+      @processo.estado.should == 'encerrado'
+    end
+
+    it "guardar a data e hr de encerramento" do
+      no_ano_e_hr(2013,5,10,15){ @processo.data_hr_encerramento.should == '01/01/13 - 05:10:15' }
+    end
+
+    it "guarda setor onde o processo foi encerrado" do
+      @processo.setor_de_arquivamento.should == @setor_destino
     end
   end
 end

@@ -2,11 +2,11 @@
 require 'spec_helper'
 
 feature "encerrar processo" do
-  scenario 'em processo recebido', javascript: true do
+  scenario 'pesquisa por um processo e tentar encerrar o mesmo', javascript: true do
     setor1 = create :setor, nome: 'Setor 1'
     setor2 = create :setor, nome: 'Setor 2'
     processo = create :processo, setor_origem: setor1, destino_inicial: setor2
-    no_ano(2012) { receber_processo_em(processo, setor2) }
+    receber_processo_em(processo, setor2)
     create :motivo, nome: "motivo 1"
     
     visit encerrar_processos_path
@@ -30,7 +30,7 @@ feature "encerrar processo" do
     end
 
     page.should have_content 'Processo encerrado.'
-    page.should have_content 'Encerrado em: ' + Date.today.strftime("%d/%m/%y")
+    page.should have_content 'Encerrado em: 01/01/12' #hr não foi testada pois se o teste demorar ela sera alterada, logo nao tem como saber exatamente a hr, mas tem teste para o metodo de geração da mesma
     page.should have_content 'Arquivado em: Setor 2' 
   end
 end

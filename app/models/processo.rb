@@ -2,12 +2,14 @@ class Processo < ActiveRecord::Base
   attr_accessible :conteudo, :setor_origem, :requerente, :interessado,
                   :destino_inicial, :tipo_solicitacao, :setor_origem_id,
                   :requerente_id, :interessado_id, :destino_inicial_id,
-                  :tipo_solicitacao_id
+                  :tipo_solicitacao_id, :motivo_id, :observacoes
+
   belongs_to :setor_origem, class_name: 'Setor'
   belongs_to :destino_inicial, class_name: 'Setor'
   belongs_to :requerente, class_name: 'Solicitante'
   belongs_to :interessado, class_name: 'Solicitante'
   belongs_to :tipo_solicitacao
+  belongs_to :motivo
   has_many :tramitacoes
   has_many :despachos
 
@@ -25,6 +27,10 @@ class Processo < ActiveRecord::Base
     event :receber do
       transition :enviado => :recebido
     end
+
+    event :encerrar do
+      transition :recebido => :encerrado
+    end
   end
 
   def enviar_para(setor)
@@ -37,24 +43,33 @@ class Processo < ActiveRecord::Base
     super
   end
 
-  def self.filtrados_por_setor
-    filtro = {}
-    Setor.all.each do |setor|
-      filtro[setor] = self.all.map{ |processo| processo if processo.setor_atual == setor}.delete_if{|processo| processo == nil}
-    end
-    return filtro
+  def encerrar
+    self.data_hr_encerramento = Time.now.strftime("%d/%m/%y - %T")
+    super
   end
 
   def setor_atual
     self.tramitacoes.empty? ? self.setor_origem : self.tramitacoes.last.setor_destino
   end
 
+  def ultima_tramitacao
+    tramitacoes.sort_by(&:enviada_em).last
+  end
+
+  def setor_de_arquivamento
+    self.estado == 'encerrado' ? self.setor_atual : nil
+  end
+
   def self.aguardando_recebimento_em(setor)
     Processo.all.select {|p| p.setor_atual == setor }
   end
 
-  def ultima_tramitacao
-    tramitacoes.sort_by(&:enviada_em).last
+  def self.filtrados_por_setor
+    filtro = {}
+    Setor.all.each do |setor|
+      filtro[setor] = self.all.map{ |processo| processo if processo.setor_atual == setor}.delete_if{|processo| processo == nil}
+    end
+    return filtro
   end
 
   private
