@@ -5,8 +5,8 @@ feature "encerrar processo" do
   scenario 'pesquisa por um processo e tentar encerrar o mesmo', javascript: true do
     setor1 = create :setor, nome: 'Setor 1'
     setor2 = create :setor, nome: 'Setor 2'
-    processo = create :processo, setor_origem: setor1, destino_inicial: setor2
-    receber_processo_em(processo, setor2)
+    Timecop.freeze(2012, 5, 19, 8, 10, 11) { @processo = create :processo, setor_origem: setor1, destino_inicial: setor2 }
+    receber_processo_em(@processo, setor2)
     create :motivo, nome: "motivo 1"
     
     visit encerrar_processos_path
