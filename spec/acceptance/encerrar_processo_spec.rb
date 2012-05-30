@@ -30,7 +30,7 @@ feature "encerrar processo" do
     end
 
     page.should have_content 'Processo encerrado.'
-    page.should have_content 'Encerrado em: 20/05/12 - 10:00:11'
+    page.should have_content 'Encerrado em: 20/05/12'
     page.should have_content 'Arquivado em: Setor 2' 
   end
 end
