@@ -122,7 +122,7 @@ describe Processo do
     end
 
     it "guardar a data e hr de encerramento" do
-      no_ano_e_hr(2013,5,10,15){ @processo.data_hr_encerramento.should == '01/01/13 - 05:10:15' }
+      no_ano_e_hr(2013,5,10,15){ @processo.data_hr_encerramento.should == Time.now }
     end
 
     it "guarda setor onde o processo foi encerrado" do

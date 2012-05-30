@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120524203019) do
+ActiveRecord::Schema.define(:version => 20120530190427) do
 
   create_table "despachos", :force => true do |t|
     t.text     "conteudo"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(:version => 20120524203019) do
     t.string   "estado"
     t.text     "observacoes"
     t.integer  "motivo_id"
-    t.string   "data_hr_encerramento"
+    t.datetime "data_hr_encerramento"
   end
 
   add_index "processos", ["destino_inicial_id"], :name => "index_requerimentos_on_destino_inicial_id"

@@ -44,7 +44,7 @@ class Processo < ActiveRecord::Base
   end
 
   def encerrar
-    self.data_hr_encerramento = Time.now.strftime("%d/%m/%y - %T")
+    self.data_hr_encerramento = Time.now
     super
   end
 

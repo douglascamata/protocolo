@@ -26,11 +26,11 @@ feature "encerrar processo" do
 
       select 'motivo 1', from: 'Motivo'
       fill_in 'Observações', with: 'Obeservação qualquer'
-      click_button 'Encerrar'
+      Timecop.freeze(2012, 5, 20, 10, 0, 11) { click_button 'Encerrar' }
     end
 
     page.should have_content 'Processo encerrado.'
-    page.should have_content 'Encerrado em: 01/01/12' #hr não foi testada pois se o teste demorar ela sera alterada, logo nao tem como saber exatamente a hr, mas tem teste para o metodo de geração da mesma
+    page.should have_content 'Encerrado em: 20/05/12 - 10:00:11'
     page.should have_content 'Arquivado em: Setor 2' 
   end
 end
