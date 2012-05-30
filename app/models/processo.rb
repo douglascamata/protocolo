@@ -39,7 +39,7 @@ class Processo < ActiveRecord::Base
   end
 
   def receber
-    tramitacoes.last.registrar_recebimento
+    ultima_tramitacao.registrar_recebimento
     super
   end
 

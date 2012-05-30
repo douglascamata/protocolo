@@ -18,6 +18,7 @@ feature "encerrar processo" do
       page.should have_content 'Numero protocolo: 00001/12'
       page.should have_content 'Setor 1'
       page.should have_content 'Setor 2'
+      page.should_not have_content 'Arquivado em: Setor'
     end
 
     within_fieldset 'Encerrar processo' do
