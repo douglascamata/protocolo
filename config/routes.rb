@@ -1,4 +1,6 @@
 Protocolo::Application.routes.draw do
+  resources :setores, :only => :show
+
   root to: 'home#index'
 
   resources :processos, only: [:new, :create, :show] do
