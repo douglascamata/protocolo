@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120530190427) do
+ActiveRecord::Schema.define(:version => 20120611184631) do
 
   create_table "despachos", :force => true do |t|
     t.text     "conteudo"
@@ -73,6 +73,12 @@ ActiveRecord::Schema.define(:version => 20120530190427) do
     t.datetime "updated_at",       :null => false
     t.integer  "processo_id"
     t.datetime "recebida_em"
+  end
+
+  create_table "usuarios", :force => true do |t|
+    t.string   "papel"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end
