@@ -29,4 +29,13 @@ class ProcessosController < InheritedResources::Base
     @processo = Processo.find_by_numero_protocolo(params[:numero_protocolo])
     respond_to :js
   end
+
+  def reabrir
+    @setores = Setor.all
+  end
+
+  def aguardando_reabrimento
+    @processos = Processo.aguardando_reabrimento_em(Setor.find(params[:setor_id]))
+    respond_to :js
+  end
 end

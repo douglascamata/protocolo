@@ -60,8 +60,13 @@ class Processo < ActiveRecord::Base
     self.estado == 'encerrado' ? self.setor_atual : nil
   end
 
+  
+  def self.aguardando_reabrimento_em(setor)
+    Processo.all.select {|p| p.setor_atual == setor and p.estado == 'encerrado'}
+  end
+
   def self.aguardando_recebimento_em(setor)
-    Processo.all.select {|p| p.setor_atual == setor }
+    Processo.all.select {|p| p.setor_atual == setor and p.estado == 'enviado'}
   end
 
   def self.filtrados_por_setor

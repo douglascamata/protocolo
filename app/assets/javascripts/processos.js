@@ -8,4 +8,10 @@ $(document).ready(function() {
     var numero_protocolo = $('input#numero_protocolo').attr("value");
     $.get('/processos/buscar?numero_protocolo=' + numero_protocolo);
   });
+
+  $('#reabrir_no_setor').change(function() {
+    var id = this.value;
+    $.get('/processos/aguardando_reabrimento?setor_id=' + id);
+  });
+
 });

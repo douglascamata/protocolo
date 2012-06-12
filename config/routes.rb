@@ -1,5 +1,4 @@
 Protocolo::Application.routes.draw do
-  resources :setores, :only => :show
 
   root to: 'home#index'
 
@@ -7,8 +6,10 @@ Protocolo::Application.routes.draw do
     collection do
       get :receber
       get :aguardando_recebimento
+      get :aguardando_reabrimento
       get :encerrar
       get :buscar
+      get :reabrir
     end
     member do
       put :receber
