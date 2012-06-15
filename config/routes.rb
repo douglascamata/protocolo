@@ -23,6 +23,8 @@ Protocolo::Application.routes.draw do
 
   resources :despachos, only: [:new, :create, :show]
 
+  resources :juntadas, only: [:new, :create, :show]
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -80,3 +82,4 @@ Protocolo::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 end
+
