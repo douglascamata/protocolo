@@ -12,6 +12,8 @@ class Processo < ActiveRecord::Base
   belongs_to :motivo
   has_many :tramitacoes
   has_many :despachos
+  belongs_to :juntada
+  has_one :juntada, :foreign_key => 'processo_principal_id'
 
   validates_presence_of :conteudo, :setor_origem, :requerente,
                         :destino_inicial, :tipo_solicitacao
@@ -60,7 +62,7 @@ class Processo < ActiveRecord::Base
     self.estado == 'encerrado' ? self.setor_atual : nil
   end
 
-  
+
   def self.aguardando_reabrimento_em(setor)
     Processo.all.select {|p| p.setor_atual == setor and p.estado == 'encerrado'}
   end
@@ -90,3 +92,4 @@ class Processo < ActiveRecord::Base
   end
 
 end
+
