@@ -28,7 +28,7 @@
 
   %p
     %b Encerrado em:
-    = processo.try(:data_hr_encerramento)
+    = processo.data_hr_encerramento.try(:strftime, "%d/%m/%y - %T")
   %p
     %b Arquivado em:
-    = processo.setor_atual.try(:nome)
+    = processo.setor_de_arquivamento.try(:nome)

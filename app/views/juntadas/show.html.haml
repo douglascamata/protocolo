@@ -1,0 +1,18 @@
+%p
+  %b Tipo Juntada:
+  = @juntada.tipo
+
+%fieldset
+  %legend Processos que recebeu a juntada
+
+  %p
+  = render 'processos/processo', processo: @juntada.processo_principal
+
+
+%fieldset
+  %legend Processos que foram juntados
+
+  %p
+  -@juntada.processos.each do |processo|
+    = render 'processos/processo', processo: processo
+

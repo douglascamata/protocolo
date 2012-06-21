@@ -7,3 +7,8 @@ Protocolo
 =========
 
 Sistema de protocolo.
+
+Staging
+=======
+
+Servidor usado para staging da aplicação: http://protocolo-staging.herokuapp.com/

@@ -1,12 +1,15 @@
 Protocolo::Application.routes.draw do
+
   root to: 'home#index'
 
   resources :processos, only: [:new, :create, :show] do
     collection do
       get :receber
       get :aguardando_recebimento
+      get :aguardando_reabrimento
       get :encerrar
       get :buscar
+      get :reabrir
     end
     member do
       put :receber
@@ -19,6 +22,8 @@ Protocolo::Application.routes.draw do
   end
 
   resources :despachos, only: [:new, :create, :show]
+
+  resources :juntadas, only: [:new, :create, :show]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -77,3 +82,4 @@ Protocolo::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 end
+

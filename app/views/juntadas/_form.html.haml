@@ -1,0 +1,11 @@
+= semantic_form_for @juntada do |f|
+  = f.input :tipo, as: :select, collection: ["Anexar", "Apensar"]
+
+  = f.inputs 'Processo que receberá a juntada' do
+    = f.input :processo_principal, as: :select, collection: Processo.all.map{|processo| [processo.numero_protocolo, processo.id]}
+
+  = f.inputs 'Processos a serem juntados' do
+    = f.input :processos, as: :check_boxes, collection: Processo.all.map{|processo| [processo.numero_protocolo, processo.id]}
+
+  = f.submit 'Salvar'
+

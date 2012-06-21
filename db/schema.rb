@@ -11,13 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120524203019) do
+ActiveRecord::Schema.define(:version => 20120615002944) do
 
   create_table "despachos", :force => true do |t|
     t.text     "conteudo"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "processo_id"
+  end
+
+  create_table "juntadas", :force => true do |t|
+    t.string   "tipo"
+    t.integer  "processo_principal_id"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
   end
 
   create_table "motivos", :force => true do |t|
@@ -39,7 +46,8 @@ ActiveRecord::Schema.define(:version => 20120524203019) do
     t.string   "estado"
     t.text     "observacoes"
     t.integer  "motivo_id"
-    t.string   "data_hr_encerramento"
+    t.datetime "data_hr_encerramento"
+    t.integer  "juntada_id"
   end
 
   add_index "processos", ["destino_inicial_id"], :name => "index_requerimentos_on_destino_inicial_id"
@@ -73,6 +81,12 @@ ActiveRecord::Schema.define(:version => 20120524203019) do
     t.datetime "updated_at",       :null => false
     t.integer  "processo_id"
     t.datetime "recebida_em"
+  end
+
+  create_table "usuarios", :force => true do |t|
+    t.string   "papel"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end

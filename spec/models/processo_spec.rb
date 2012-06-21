@@ -82,6 +82,19 @@ describe Processo do
       processo3 = criar_processo_enviado_para(setor2)
       Processo.aguardando_recebimento_em(setor1).should =~ [processo1, processo2]
       Processo.aguardando_recebimento_em(setor2).should == [processo3]
+
+      processo3.receber!
+      processo3.encerrar!
+      Processo.aguardando_recebimento_em(setor2).should == []
+    end
+
+    it 'retorna processos aguardando reabrimento em determinado setor' do
+      setor1, setor2 = create(:setor), create(:setor)
+      processo1 = criar_processo_encerrado_em(setor1)
+      processo2 = criar_processo_encerrado_em(setor1)
+      processo3 = criar_processo_encerrado_em(setor2)
+      Processo.aguardando_reabrimento_em(setor1).should =~ [processo1, processo2]
+      Processo.aguardando_reabrimento_em(setor2).should == [processo3]
     end
   end
 
@@ -122,7 +135,7 @@ describe Processo do
     end
 
     it "guardar a data e hr de encerramento" do
-      no_ano_e_hr(2013,5,10,15){ @processo.data_hr_encerramento.should == '01/01/13 - 05:10:15' }
+      no_ano_e_hr(2013,5,10,15){ @processo.data_hr_encerramento.should == Time.now }
     end
 
     it "guarda setor onde o processo foi encerrado" do

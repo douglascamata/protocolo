@@ -1,0 +1,7 @@
+%h1 Reabrir processos
+
+%form{action: '#'}
+  = label_tag 'reabrir_no_setor', 'Setor'
+  = select_tag 'reabrir_no_setor', options_for_select([['', -1]] + @setores.map {|s| [s.nome, s.id] })
+
+#processos_aguardando_reabrimento
