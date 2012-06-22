@@ -16,6 +16,7 @@ Protocolo::Application.routes.draw do
     member do
       put :receber
       put :encerrar
+      put :reabrir
     end
   end
 

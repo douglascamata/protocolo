@@ -33,6 +33,10 @@ class Processo < ActiveRecord::Base
     event :encerrar do
       transition :recebido => :encerrado
     end
+
+    event :reabrir do
+      transition :encerrado => :recebido
+    end
   end
 
   def enviar_para(setor)

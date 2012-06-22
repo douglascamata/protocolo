@@ -1,0 +1,22 @@
+%fieldset
+  %legend Processos esperando reabrimento
+
+  %table
+    %thead
+      %tr
+        %th Número
+        %th Origem
+        %th Arquivado em
+        %th Data de arquivamento
+        %th Motivo
+        %th
+    %tbody
+      - @processos.each do |processo|
+        %tr
+          %td= processo.numero_protocolo
+          %td= processo.setor_origem.nome
+          %td= processo.setor_de_arquivamento
+          %td= processo.data_hr_encerramento.try(:strftime, "%d/%m/%y - %T")
+          %td= processo.try(:motivo)
+          %td= link_to 'Reabrir', reabrir_processo_path(processo), method: :put
+

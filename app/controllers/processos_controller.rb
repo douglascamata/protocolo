@@ -32,7 +32,13 @@ class ProcessosController < InheritedResources::Base
   end
 
   def reabrir
-    @setores = Setor.all
+    if params[:id] # PUT receber_processo_path(:id)
+      processo = Processo.find(params[:id])
+      processo.reabrir!
+      redirect_to reabrir_processos_path, notice: "Processo #{processo.numero_protocolo} foi reaberto"
+    else # GET receber_processos_path
+      @setores = Setor.all
+    end
   end
 
   def aguardando_reabrimento

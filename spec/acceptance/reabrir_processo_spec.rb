@@ -9,17 +9,25 @@ feature "reabrir processo" do
 
   scenario 'processos encerrados devem ser mostrados relativamente ao setor selecionado', javascript: true do
     logar(create :user, role: 'admin')
-    
+
     setor1 = create :setor, nome: 'Setor 1'
     no_ano(2012) do 
-      2.times{ criar_processo_encerrado_em(setor1) } 
+      criar_processo_encerrado_em(setor1) 
       criar_processo_encerrado_em(create :setor)
     end
     visit reabrir_processos_path
 
     select 'Setor 1', from: 'Setor'
-    page.should have_content '00001/12'
-    page.should have_content '00002/12'
-    page.should_not have_content '00003/12'
+
+    within_fieldset 'Processos esperando reabrimento' do
+      page.should have_content '00001/12'
+      page.should have_link 'Reabrir'
+      page.should_not have_content '00002/12'
+    end
+    
+    click_link 'Reabrir'
+    page.should have_content 'Processo 00001/12 foi reaberto'
+    
+    page.should_not have_content 'Processos esperando reabrimento'
   end
 end

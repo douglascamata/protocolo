@@ -47,6 +47,17 @@ describe Processo do
         expect { processo.enviar_para!( create :setor ) }.to raise_error
       end
     end
+
+    context "reaberto" do
+      it "vindo de encerrado, vai para 'recebido' " do
+        processo.enviar_para!(create :setor)
+        processo.receber!
+        processo.encerrar!
+
+        expect { processo.reabrir!(create :setor) }.
+          to change { processo.estado }.from('encerrado').to('recebido')
+      end
+    end
   end
 
   context 'ações de classe' do
@@ -140,6 +151,19 @@ describe Processo do
 
     it "guarda setor onde o processo foi encerrado" do
       @processo.setor_de_arquivamento.should == @setor_destino
+    end
+  end
+
+  describe '#reabrir' do
+    it 'gera uma tramitação' do
+      processo = create :processo
+      setor_de_encerramento = create :setor
+      processo.enviar_para(setor_de_encerramento)
+      processo.receber!
+      processo.encerrar!
+      processo.reabrir!
+      processo.estado.should == 'recebido'
+      processo.setor_atual.should == setor_de_encerramento
     end
   end
 end
