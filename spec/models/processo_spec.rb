@@ -41,7 +41,7 @@ describe Processo do
           to change { processo.estado }.from('recebido').to('encerrado')
       end
 
-      it "não muda de estado" do
+      it "não pode ser enviado" do
         processo.encerrar!
         expect { processo.receber! }.to raise_error
         expect { processo.enviar_para!( create :setor ) }.to raise_error
