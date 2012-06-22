@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   def admin?
-    true if self.role == 'admin'
+    return true if self.role == 'admin'
     false
   end
 end
