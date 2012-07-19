@@ -1,6 +1,6 @@
 development:
   adapter: postgresql
-  encoding: unicode
+  encoding: utf8
   database: protocolo_development
   pool: 5
   username: postgres
@@ -9,7 +9,7 @@ development:
 
 test:
   adapter: postgresql
-  encoding: unicode
+  encoding: utf8
   database: protocolo_test
   pool: 5
   username: postgres
@@ -18,7 +18,7 @@ test:
 
 production:
   adapter: postgresql
-  encoding: unicode
+  encoding: utf8
   database: protocolo_development
   pool: 5
   username: postgres
