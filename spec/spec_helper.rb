@@ -1,4 +1,5 @@
 require 'spork'
+require 'database_cleaner'
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
 
@@ -55,9 +56,19 @@ Spork.prefork do
     # examples within a transaction, remove the following line or assign false
     # instead of true.
     config.use_transactional_fixtures = true
+    config.use_transactional_examples = false
+
+    config.before(:suite) do
+      DatabaseCleaner.strategy = :transaction
+    end
 
     config.before :each do
       Capybara.current_driver = :poltergeist if example.metadata[:javascript]
+      DatabaseCleaner.start
+    end
+
+    config.after(:each) do
+      DatabaseCleaner.clean
     end
 
     # If true, the base class of anonymous controllers will be inferred
