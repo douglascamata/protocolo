@@ -74,7 +74,7 @@ describe Processo do
 
       Processo.filtrados_por_setor[setor1].should include(*array_processos_setor1)
       Processo.filtrados_por_setor[setor2].should include(*array_processos_setor2)
-      # Processo.filtrados_por_setor.should == {setor1 => array_processos_setor1, setor2 => array_processos_setor2, setor3 => []}
+      Processo.filtrados_por_setor[setor3].should be_empty
 
       processo = create(:processo, setor_origem: setor1, destino_inicial: setor3)
       Processo.filtrados_por_setor[setor1].should include processo
