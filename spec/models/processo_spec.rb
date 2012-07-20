@@ -72,7 +72,7 @@ describe Processo do
       3.times{ array_processos_setor1 << create(:processo, setor_origem: setor1, destino_inicial: setor3)}
       3.times{ array_processos_setor2 << create(:processo, setor_origem: setor2, destino_inicial: setor3)}
 
-      Processo.filtrados_por_setor.should =~ {setor1 => array_processos_setor1, setor2 => array_processos_setor2, setor3 => []}
+      Processo.filtrados_por_setor.should == {setor1 => array_processos_setor1, setor2 => array_processos_setor2, setor3 => []}
 
       processo = create(:processo, setor_origem: setor1, destino_inicial: setor3)
       Processo.filtrados_por_setor[setor1].should include processo
