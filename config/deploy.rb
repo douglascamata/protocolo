@@ -1,5 +1,5 @@
 set :application, "protocolo"
-set :domain, "172.20.5.107"
+set :domain, "localhost"
 set :deploy_to, "/home/deploy/#{application}"
 set :user, "deploy"
 set :use_sudo, false
