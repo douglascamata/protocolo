@@ -23,6 +23,8 @@ end
 group :development, :test do
   gem 'rspec-rails', '~> 2.10.0'
   gem 'capybara', '~> 1.1.2'
+  gem 'capistrano'
+  gem 'rvm-capistrano'
   gem 'database_cleaner'
   gem 'poltergeist', '~> 0.6.0'
   gem 'launchy', '~> 2.1.0'

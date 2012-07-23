@@ -21,7 +21,6 @@ $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 set :rvm_install_type, :head
 set :rvm_install_ruby_params, '--1.9'      # for jruby/rbx default to 1.9 mode
 set :rvm_ruby_string, "ruby-1.9.3-p194@protocolo"
-set :rvm_type, :user
 
 default_environment["RAILS_ENV"] = 'production'
 
