@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-feature 'enviar processos', javascript: true do
+feature 'enviar processos', js: true do
   background do
     @setor_1 = create :setor, nome: 'Setor_1'
     @setor_2 = create :setor, nome: 'Setor_2'

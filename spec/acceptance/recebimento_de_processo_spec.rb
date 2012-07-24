@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 feature 'recebimento de processo' do
-  scenario 'padrão', javascript: true do
+  scenario 'padrão', js: true do
     setor1 = create :setor, nome: 'Setor 1'
     create :setor, nome: 'Setor 2'
     no_ano(2012) { criar_processo_enviado_para(setor1) }

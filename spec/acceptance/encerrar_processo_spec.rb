@@ -2,7 +2,7 @@
 require 'spec_helper'
 
 feature "encerrar processo" do
-  scenario 'pesquisa por um processo e tentar encerrar o mesmo', javascript: true do
+  scenario 'pesquisa por um processo e tentar encerrar o mesmo', js: true do
     setor1 = create :setor, nome: 'Setor 1'
     setor2 = create :setor, nome: 'Setor 2'
     Timecop.freeze(2012, 5, 19, 8, 10, 11) { @processo = create :processo, setor_origem: setor1, destino_inicial: setor2 }

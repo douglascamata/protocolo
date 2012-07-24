@@ -7,7 +7,7 @@ feature "reabrir processo" do
     page.should have_content 'Você não tem permissão para acessar esse conteudo.'
   end
 
-  scenario 'processos encerrados devem ser mostrados relativamente ao setor selecionado', javascript: true do
+  scenario 'processos encerrados devem ser mostrados relativamente ao setor selecionado', js: true do
     logar(create :user, role: 'admin')
 
     setor1 = create :setor, nome: 'Setor 1'

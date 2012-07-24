@@ -45,6 +45,8 @@ Spork.prefork do
   # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
+  Capybara.javascript_driver = :poltergeist
+
   RSpec.configure do |config|
     config.include FactoryGirl::Syntax::Methods
     config.include Devise::TestHelpers, :type => :controller
@@ -57,10 +59,6 @@ Spork.prefork do
     # examples within a transaction, remove the following line or assign false
     # instead of true.
     config.use_transactional_fixtures = true
-
-    config.before :each do
-      Capybara.current_driver = :poltergeist if example.metadata[:javascript]
-    end
 
     # If true, the base class of anonymous controllers will be inferred
     # automatically. This will be the default behavior in future versions of
