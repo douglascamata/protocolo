@@ -1,9 +1,13 @@
 set :application, "protocolo"
-set :domain, "localhost"
+set :domain, "172.20.5.107"
 set :deploy_to, "/home/deploy/#{application}"
 set :user, "deploy"
 set :use_sudo, false
 set :keep_releases, 3
+
+default_run_options[:pty] = true # allow pseudo-terminals
+ssh_options[:forward_agent] = true # forward SSH keys (this will use your SSH key to get the code from git repository)
+ssh_options[:port] = 22
 
 set :repository,  "https://github.com/cciuenf/protocolo.git"
 set :scm, :git
