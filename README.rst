@@ -11,4 +11,4 @@ Sistema de protocolo.
 Staging
 =======
 
-Servidor usado para staging da aplicação: http://protocolo-staging.herokuapp.com/
+Servidor usado para staging da aplicação: http://www.lcmat.uenf.br/protocolo
