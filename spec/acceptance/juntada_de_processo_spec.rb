@@ -41,5 +41,20 @@ feature 'Juntada de processo' do
     page.should_not have_content '00002/12'
   end
 
+  scenario 'Desanexar Processo de Juntada', js: true do
+    processo_1 = create :processo
+    processo_2 = create :processo
+    processo_3 = create :processo
+    create(:juntada, tipo: "Anexar", processo_principal: processo_1, processos: [processo_2, processo_3])
+
+    visit desanexar_juntadas_path
+    select "00001/12", on: "Processo"
+    uncheck '00002/12'
+    click_button 'Desanexar'
+
+    page.should have_content 'Processos desanexado com sucesso'
+    page.should_not have_content '00002/12'
+  end
+
 end
 
