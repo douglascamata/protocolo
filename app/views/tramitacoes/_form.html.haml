@@ -1,5 +1,5 @@
 = semantic_form_for @tramitacao do |f|
-  = f.input :setor_origem, label: 'Setor de origem', member_label: :nome
+  = f.input :setor_origem, label: 'Setor de origem', member_label: :nome, input_html: {class: 'selecionar_e_procurar', data: {url: atualizar_processos_tramitacoes_path}}
   = f.input :setor_destino, label: 'Setor de destino', member_label: :nome
   = f.input :processo, member_label: :numero_protocolo, collection: [],
       :input_html => { :class => "processos" }
