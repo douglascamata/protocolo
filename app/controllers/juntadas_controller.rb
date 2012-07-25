@@ -24,5 +24,11 @@ class JuntadasController < InheritedResources::Base
     @juntada.update_attribute(:processo_ids, params[:juntada][:processo_ids])
     redirect_to juntada_path(@juntada), notice: "Processos desapensado com sucesso"
   end
+
+  def atualizar_processos
+    @juntada = Juntada.find_by_processo_principal_id(params[:processo_id])
+    @processos = @juntada.processos
+    respond_to :js
+  end
 end
 
