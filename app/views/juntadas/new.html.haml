@@ -1,6 +1,14 @@
 %h1 Realizar Juntada
 
-= render 'form'
+#form_para_buscar
+  %fieldset
+    %legend Processo a receber juntada
+    %label{:for => "numero_protocolo"}
+    %input#numero_protocolo{:name => "processo_principal", :type => "text"}
+    %button#buscar Buscar
+#processo_buscado
+
+#form_juntada
 
 = link_to 'Back', juntadas_path
 

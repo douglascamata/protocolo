@@ -1,5 +1,5 @@
 Protocolo::Application.routes.draw do
-  
+
   devise_for :users
 
   root to: 'home#index'
@@ -26,8 +26,11 @@ Protocolo::Application.routes.draw do
 
   resources :despachos, only: [:new, :create, :show]
 
-  resources :juntadas, only: [:new, :create, :show]
-
+  resources :juntadas, only: [:new, :create, :show] do
+    collection do
+      get :buscar
+    end
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,0 +1,6 @@
+$('#processo_buscado').html(
+  "<%= escape_javascript render 'processos/processo', processo: @processo %>");
+
+$('#form_juntada').html(
+  "<%= escape_javascript render 'form', juntada: @juntada, processo: @processo %>");
+

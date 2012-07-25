@@ -8,5 +8,11 @@ class JuntadasController < InheritedResources::Base
   def create
     create!(:notice => "Juntada realizada com sucesso!")
   end
+
+  def buscar
+    @processo = Processo.find_by_numero_protocolo(params[:numero_protocolo])
+    @juntada = Juntada.new
+    respond_to :js
+  end
 end
 
