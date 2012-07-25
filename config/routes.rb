@@ -29,6 +29,11 @@ Protocolo::Application.routes.draw do
   resources :juntadas, only: [:new, :create, :show] do
     collection do
       get :buscar
+      get :atualizar_processos
+      get :desapensar
+    end
+    member do
+      put :desanexar_processo
     end
   end
   # The priority is based upon order of creation:
