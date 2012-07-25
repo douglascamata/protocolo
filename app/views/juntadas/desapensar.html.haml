@@ -1,0 +1,7 @@
+%h1 Desapensar Processo
+%form{action: '#'}
+  = label_tag 'processo_principal', 'Processo'
+  = select_tag 'processo', options_for_select([['', -1]] + @juntadas.map{|p| [p.processo_principal.numero_protocolo, p.processo_principal.id]})
+
+#processos_anexados
+
