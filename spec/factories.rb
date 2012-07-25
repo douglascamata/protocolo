@@ -10,6 +10,7 @@ FactoryGirl.define do
 
   factory :solicitante do
     sequence(:nome) {|n| "Nome#{n}" }
+    sequence(:matricula) {|n| "0000#{n}" }
   end
 
   factory :tipo_solicitacao do
