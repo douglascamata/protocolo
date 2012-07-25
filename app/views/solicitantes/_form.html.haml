@@ -1,0 +1,9 @@
+= semantic_form_for @solicitante do |f|
+  = f.input :matricula, label: 'Matricula'
+  = f.input :nome, label: 'Nome'
+  = f.input :email, label: 'Email', :as => :email
+  = f.input :telefone, label: 'Telefone', :as => :phone
+  = f.input :endereco, label: 'Endereço'
+
+  = f.submit 'Salvar'
+
