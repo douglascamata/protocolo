@@ -5,5 +5,9 @@ class Juntada < ActiveRecord::Base
 
   validates_presence_of :tipo, :processos, :processo_principal
 
+  def anexado?
+    tipo == 'Anexar'
+  end
+
 end
 
