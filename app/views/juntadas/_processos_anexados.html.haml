@@ -1,0 +1,4 @@
+= semantic_form_for juntada, url: desanexar_processo_juntada_path(juntada) do |f|
+  = f.input :processos, :as => :check_boxes, collection: processos.map{|processo| [processo.numero_protocolo, processo.id]}, :input_html => {:checked => 'checked'}
+  = f.submit 'Des' + juntada.tipo.downcase
+
