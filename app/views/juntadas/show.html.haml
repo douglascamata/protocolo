@@ -13,6 +13,5 @@
   %legend Processos que foram juntados
 
   %p
-  -@juntada.processos.each do |processo|
-    = render 'processos/processo', processo: processo
+  = render @juntada.processos
 

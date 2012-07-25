@@ -5,7 +5,7 @@
     %legend Processo a receber juntada
     %label{:for => "numero_protocolo"}
     %input#numero_protocolo{:name => "processo_principal", :type => "text"}
-    %button#buscar Buscar
+    %button#buscar{data: {url: buscar_juntadas_path}} Buscar
 #processo_buscado
 
 #form_juntada

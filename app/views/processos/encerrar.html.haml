@@ -3,7 +3,7 @@
 #form_para_buscar
   %label{:for => "numero_protocolo"} Processo
   %input#numero_protocolo{:name => "numero_protocolo", :type => "text"}
-  %button#buscar Buscar
+  %button#buscar{data: {url: buscar_processos_path}} Buscar
 
 #processo_a_ser_encerrado
 #encerrar_processo
