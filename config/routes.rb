@@ -40,6 +40,8 @@ Protocolo::Application.routes.draw do
 
   resources :solicitantes, only: [:new, :create, :show]
 
+  resources :setores, only: [:new, :create, :show]
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
