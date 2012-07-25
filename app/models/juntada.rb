@@ -1,5 +1,5 @@
 class Juntada < ActiveRecord::Base
-  attr_accessible :tipo, :processo_ids, :processo_principal_id
+  attr_accessible :tipo, :processo_ids, :processo_principal_id, :processos, :processo_principal
   has_many :processos
   belongs_to :processo_principal, class_name: 'Processo'
 
