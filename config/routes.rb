@@ -37,6 +37,9 @@ Protocolo::Application.routes.draw do
       put :desanexar_processo
     end
   end
+
+  resources :solicitantes, only: [:new, :create, :show]
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
