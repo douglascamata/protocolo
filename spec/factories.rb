@@ -39,4 +39,11 @@ FactoryGirl.define do
     nome "Motivo qualquer"
   end
 
+  factory :juntada do
+    processo_principal { create :processo }
+    processos {create :processo}
+    tipo "Anexar"
+  end
+
 end
+
