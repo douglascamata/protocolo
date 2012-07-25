@@ -31,6 +31,7 @@ Protocolo::Application.routes.draw do
       get :buscar
       get :atualizar_processos
       get :desapensar
+      get :desanexar
     end
     member do
       put :desanexar_processo
