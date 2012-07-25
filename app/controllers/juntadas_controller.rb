@@ -14,5 +14,15 @@ class JuntadasController < InheritedResources::Base
     @juntada = Juntada.new
     respond_to :js
   end
+
+  def desapensar
+    @juntadas = Juntada.find_all_by_tipo("Apensar")
+  end
+
+  def desanexar_processo
+    @juntada = Juntada.find(params[:id])
+    @juntada.update_attribute(:processo_ids, params[:juntada][:processo_ids])
+    redirect_to juntada_path(@juntada), notice: "Processos desapensado com sucesso"
+  end
 end
 
