@@ -1,8 +1,8 @@
 Motivo.create! nome: "motivo_1"
 Setor.create! nome: "setor_1"
 Setor.create! nome: "setor_2"
-Solicitante.create! nome: "solicitante_1"
-Solicitante.create! nome: "solicitante_2"
+Solicitante.create! nome: "solicitante_1", matricula: "000001"
+Solicitante.create! nome: "solicitante_2", matricula: "000002"
 TipoSolicitacao.create! descricao: "minha_descricao"
 processo_1 = Processo.create! conteudo: "meu conteudo", requerente: Solicitante.first, interessado: Solicitante.all.second, setor_origem: Setor.first, destino_inicial: Setor.all.second, tipo_solicitacao: TipoSolicitacao.first
 processo_2 = Processo.create! conteudo: "meu conteudo", requerente: Solicitante.first, interessado: Solicitante.all.second, setor_origem: Setor.first, destino_inicial: Setor.all.second, tipo_solicitacao: TipoSolicitacao.first
