@@ -24,7 +24,6 @@ feature "Cadastrar Solicitante" do
     page.should have_content 'Nome_1'
     page.should have_content 'Meu endereço'
     page.should have_content '12345678'
-    save_and_open_page
     page.should have_content 'Setor 1'
     page.should have_content 'Setor 2'
     page.should have_content 'Setor 3'
