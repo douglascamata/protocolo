@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120725215217) do
+ActiveRecord::Schema.define(:version => 20120727133016) do
 
   create_table "despachos", :force => true do |t|
     t.text     "conteudo"
@@ -60,6 +60,11 @@ ActiveRecord::Schema.define(:version => 20120725215217) do
     t.string   "nome"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "setores_solicitantes", :force => true do |t|
+    t.integer "solicitante_id"
+    t.integer "setor_id"
   end
 
   create_table "solicitantes", :force => true do |t|
