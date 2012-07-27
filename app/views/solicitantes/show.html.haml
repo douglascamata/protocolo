@@ -13,4 +13,7 @@
 %p
   %b Endereço:
   = @solicitante.endereco
-
+%p
+  -@solicitante.setores.each do |setor|
+    %b
+    = setor.nome

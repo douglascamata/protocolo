@@ -4,6 +4,6 @@
   = f.input :email, label: 'Email', :as => :email
   = f.input :telefone, label: 'Telefone', :as => :phone
   = f.input :endereco, label: 'Endereço'
+  = f.input :setores, as: :check_boxes, collection: Setor.all.map{|s| [s.nome, s.id]}, label: 'Setores'
 
   = f.submit 'Salvar'
-
