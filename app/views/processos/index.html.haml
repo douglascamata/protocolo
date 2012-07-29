@@ -1,0 +1,39 @@
+=search_form_for @q do |f|
+	= f.label :numero_protocolo
+	= f.text_field :numero_protocolo_cont
+	%fieldset
+		%legend Data de Criação
+		= f.label :inicio
+		= f.date_select :created_at_gteq
+
+		= f.label :final
+		= f.date_select :created_at_lt
+
+	%fieldset
+		%legend Requerente
+		= f.label :requerente
+		= f.text_field :requerente_nome_cont
+
+	%fieldset	
+		%legend Interessado
+		= f.label :interessado
+		= f.text_field :interessado_nome_cont
+
+	%fieldset	
+		%legend Tipo de solicitação
+		= f.label :tipo_solicitação
+		= f.select :tipo_solicitacao_id_eq, options_for_select([['', -1]] + TipoSolicitacao.all.map{|t| [t.descricao, t.id]})
+
+	%fieldset	
+		%legend Setor de Origem
+		= f.label :origem
+		= f.select :setor_origem_id_eq, options_for_select([['', -1]] + Setor.all.map{|s| [s.nome, s.id]})
+
+	%fieldset	
+		%legend Setor de Destino
+		= f.label :destino
+		= f.select :destino_inicial_id_eq, options_for_select([['', -1]] + Setor.all.map{|s| [s.nome, s.id]})
+
+	=f.submit 'Pesquisar'
+
+=render 'resultado_busca'

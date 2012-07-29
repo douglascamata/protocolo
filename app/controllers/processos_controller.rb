@@ -45,4 +45,15 @@ class ProcessosController < InheritedResources::Base
     @processos = Processo.aguardando_reabrimento_em(Setor.find(params[:setor_id]))
     respond_to :js
   end
+
+  def index
+    p "MAAAA OEEEEE #{params}"
+    if params[:q]
+      p params[:q].delete_if{|key, value| value == "-1" || value == ""}
+    end
+    p "AAAHHHHHH CAPEEEETAAAAA! #{params[:q]}"
+    @q = Processo.search(params[:q])
+    @processo = @q.result(:distinct => true, :blank => false)
+    respond_with @processo
+  end
 end

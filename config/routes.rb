@@ -6,6 +6,7 @@ Protocolo::Application.routes.draw do
 
   resources :processos, only: [:new, :create, :show] do
     collection do
+      get :index
       get :receber
       get :aguardando_recebimento
       get :aguardando_reabrimento
