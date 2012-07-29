@@ -121,6 +121,8 @@ GEM
       faye-websocket (~> 0.4, >= 0.4.4)
       http_parser.rb (~> 0.5.3)
       multi_json (~> 1.0)
+    polyamorous (0.5.0)
+      activerecord (~> 3.0)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -145,6 +147,10 @@ GEM
       rdoc (~> 3.4)
       thor (~> 0.14.6)
     rake (0.9.2.2)
+    ransack (0.6.0)
+      actionpack (~> 3.0)
+      activerecord (~> 3.0)
+      polyamorous (~> 0.5.0)
     rdoc (3.12)
       json (~> 1.4)
     responders (0.9.1)
@@ -219,6 +225,7 @@ DEPENDENCIES
   pg (~> 0.14.0)
   poltergeist (~> 0.6.0)
   rails (= 3.2.3)
+  ransack
   rspec-rails (~> 2.10.0)
   rvm-capistrano
   sass-rails (~> 3.2.3)
