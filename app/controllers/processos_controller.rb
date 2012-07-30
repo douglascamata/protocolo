@@ -19,14 +19,14 @@ class ProcessosController < InheritedResources::Base
 
   def encerrar
     if params[:id]
-      processo = Processo.find(params[:id])        
+      processo = Processo.find(params[:id])
       processo.update_attributes(params[:processo])
       processo.encerrar!
       redirect_to processo_path(processo), notice: "Processo encerrado."
     end
   end
 
-  def buscar 
+  def buscar
     @processo = Processo.find_by_numero_protocolo(params[:numero_protocolo])
     respond_to :js
   end
@@ -47,13 +47,11 @@ class ProcessosController < InheritedResources::Base
   end
 
   def index
-    p "MAAAA OEEEEE #{params}"
     if params[:q]
-      p params[:q].delete_if{|key, value| value == "-1" || value == ""}
+      params[:q].delete_if{|key, value| value == "-1" || value == ""}
     end
-    p "AAAHHHHHH CAPEEEETAAAAA! #{params[:q]}"
     @q = Processo.search(params[:q])
-    @processo = @q.result(:distinct => true, :blank => false)
-    respond_with @processo
+    @processo = @q.result(:distinct => true)
   end
 end
+
