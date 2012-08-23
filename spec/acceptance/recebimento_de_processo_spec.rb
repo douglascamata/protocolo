@@ -3,7 +3,19 @@
 require 'spec_helper'
 
 feature 'recebimento de processo' do
+  scenario 'autorização como admin' do
+    visit receber_processos_path
+    current_path.should_not == receber_processos_path
+    page.should have_content 'Você não tem permissão para acessar esse conteudo.'
+
+    logar create(:user, role: 'admin')
+    visit receber_processos_path
+    current_path.should == receber_processos_path
+  end
+
   scenario 'padrão', js: true do
+    logar create(:user, role: 'admin')
+    
     setor1 = create :setor, nome: 'Setor 1'
     create :setor, nome: 'Setor 2'
     no_ano(2012) { criar_processo_enviado_para(setor1) }

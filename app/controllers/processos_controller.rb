@@ -1,6 +1,6 @@
 class ProcessosController < InheritedResources::Base
   actions :new, :create, :show
-  load_and_authorize_resource only: [:encerrar, :reabrir, :new, :show]
+  load_and_authorize_resource
 
   def receber
     if params[:id] # PUT receber_processo_path(:id)
