@@ -9,7 +9,18 @@ feature 'enviar processos', js: true do
     @setor_3 = create :setor, nome: 'Setor_3'
   end
 
+  scenario 'autorização como admin' do
+    visit new_tramitacao_path
+    current_path.should_not == new_tramitacao_path
+    page.should have_content 'Você não tem permissão para acessar esse conteudo.'
+
+    logar create(:user, role: 'admin')
+    visit new_tramitacao_path
+    current_path.should == new_tramitacao_path
+  end
+
   scenario 'nova tramitação sem usuario destino' do
+    logar create(:user, role: 'admin')
 
     create :processo, setor_origem: @setor_1, destino_inicial: @setor_3
     create :processo, setor_origem: @setor_2, destino_inicial: @setor_3
@@ -36,6 +47,8 @@ feature 'enviar processos', js: true do
   end
 
   scenario 'enviar um processo que já foi enviado uma ou mais vezes' do
+    logar create(:user, role: 'admin')
+    
     processo = create :processo, setor_origem: @setor_1, destino_inicial: @setor_3
     processo.tramitacoes.create(setor_origem: @setor_1, setor_destino: @setor_2)
 
