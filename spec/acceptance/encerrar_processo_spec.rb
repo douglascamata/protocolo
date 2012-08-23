@@ -2,7 +2,20 @@
 require 'spec_helper'
 
 feature "encerrar processo" do
+
+  scenario 'autorização como admin' do
+    visit encerrar_processos_path
+    current_path.should_not == encerrar_processos_path
+    page.should have_content 'Você não tem permissão para acessar esse conteudo.'
+
+    logar create(:user, role: 'admin')
+    visit encerrar_processos_path
+    current_path.should == encerrar_processos_path
+  end
+
   scenario 'pesquisa por um processo e tentar encerrar o mesmo', js: true do
+    logar create(:user, role: 'admin')
+    
     setor1 = create :setor, nome: 'Setor 1'
     setor2 = create :setor, nome: 'Setor 2'
     Timecop.freeze(2012, 5, 19, 8, 10, 11) { @processo = create :processo, setor_origem: setor1, destino_inicial: setor2 }
