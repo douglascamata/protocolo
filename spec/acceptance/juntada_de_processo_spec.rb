@@ -9,7 +9,34 @@ feature 'Juntada de processo' do
     @processo_3 = create(:processo, numero_protocolo: '00003/12')   
   end
 
+  scenario 'autorização como admin' do
+    visit new_juntada_path
+    current_path.should_not == new_juntada_path
+    page.should have_content 'Você não tem permissão para acessar esse conteudo.'
+
+    visit desapensar_juntadas_path
+    current_path.should_not == desapensar_juntadas_path
+    page.should have_content 'Você não tem permissão para acessar esse conteudo.'
+
+    visit desanexar_juntadas_path
+    current_path.should_not == desanexar_juntadas_path
+    page.should have_content 'Você não tem permissão para acessar esse conteudo.'
+
+    logar create(:user, role: 'admin')
+
+    visit new_juntada_path
+    current_path.should == new_juntada_path
+
+    visit desapensar_juntadas_path
+    current_path.should == desapensar_juntadas_path
+
+    visit desanexar_juntadas_path
+    current_path.should == desanexar_juntadas_path
+  end
+
   scenario 'Realizar juntada de processos', js: true do
+    logar create(:user, role: 'admin')
+
     visit new_juntada_path
     fill_in 'processo_principal', with: '00001/12'
     click_button 'Buscar'
@@ -27,6 +54,8 @@ feature 'Juntada de processo' do
   end
 
   scenario 'Desapensar Processo de Juntada', js: true do
+    logar create(:user, role: 'admin')
+    
     create(:juntada, tipo: "Apensar", processo_principal: @processo_1, processos: [@processo_2, @processo_3])
 
     visit desapensar_juntadas_path
@@ -40,6 +69,8 @@ feature 'Juntada de processo' do
   end
 
   scenario 'Desanexar Processo de Juntada', js: true do
+    logar create(:user, role: 'admin')
+    
     create(:juntada, tipo: "Anexar", processo_principal: @processo_1, processos: [@processo_2, @processo_3])
 
     visit desanexar_juntadas_path
