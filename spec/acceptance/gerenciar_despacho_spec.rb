@@ -3,7 +3,19 @@
 require 'spec_helper'
 
 feature 'gerenciar despacho' do
+  scenario 'autorização como admin' do
+    visit new_despacho_path
+    current_path.should_not == new_despacho_path
+    page.should have_content 'Você não tem permissão para acessar esse conteudo.'
+
+    logar create(:user, role: 'admin')
+    visit new_despacho_path
+    current_path.should == new_despacho_path
+  end
+
   scenario 'criação de despacho' do
+    logar create(:user, role: 'admin')
+    
     tipo_solicitacao = create(:tipo_solicitacao, descricao: 'tipo_1')
     processo = create(:processo, tipo_solicitacao: tipo_solicitacao)
     
