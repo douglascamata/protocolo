@@ -2,7 +2,19 @@
 require 'spec_helper'
 
 feature "Cadastrar Solicitante" do
+
+  scenario 'autorização como admin' do
+    visit new_solicitante_path
+    page.should have_content 'Você não tem permissão para acessar esse conteudo.'
+
+    logar create(:user, role: 'admin')
+    visit new_solicitante_path
+    page.should have_content 'Cadastrar Solicitante'
+  end
+
   scenario 'Criação padrão' do
+    logar create(:user, role: 'admin')
+    
     create :setor, nome: 'Setor 1'
     create :setor, nome: 'Setor 2'
     create :setor, nome: 'Setor 3'
