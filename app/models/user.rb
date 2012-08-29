@@ -10,8 +10,17 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   has_one :solicitante
+  has_many :setores, :through => :solicitante
 
   def admin?
     role == 'admin'
+  end
+
+  def solicitante?
+    self.solicitante.nil? ? false : true
+  end
+
+  def no_meu_setor?(processo)
+    self.setores.include? processo.setor_atual
   end
 end
