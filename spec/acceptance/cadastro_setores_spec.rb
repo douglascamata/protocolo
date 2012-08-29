@@ -6,13 +6,13 @@ feature "Cadastro Setor" do
     visit new_setor_path
     page.should have_content 'Você não tem permissão para acessar esse conteudo.'
 
-    logar create(:user, role: 'admin')
+    login_as(create(:user, role: 'admin'), :scope => :user)
     visit new_setor_path
     page.should have_content 'Cadastrar Setor'
   end
 
   scenario 'Criação padrão' do
-    logar create(:user, role: 'admin')
+    login_as(create(:user, role: 'admin'), :scope => :user)
     visit new_setor_path
     fill_in 'Nome', with: 'Setor_1'
     click_button 'Salvar'

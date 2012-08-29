@@ -13,7 +13,7 @@ feature 'gerenciar processo' do
     current_path.should_not == processo_path(processo)
     page.should have_content 'Você não tem permissão para acessar esse conteudo.'
 
-    logar create(:user, role: 'admin')
+    login_as(create(:user, role: 'admin'), :scope => :user)
     
     visit new_processo_path
     current_path.should == new_processo_path
@@ -23,7 +23,7 @@ feature 'gerenciar processo' do
   end
 
   scenario 'criação de processo' do
-    logar create(:user, role: 'admin')
+    login_as(create(:user, role: 'admin'), :scope => :user)
 
     create(:setor, nome: 'setor_1')
     create(:setor, nome: 'setor_2')
@@ -51,7 +51,7 @@ feature 'gerenciar processo' do
   end
 
   scenario 'processo deve ter conhecimento de toda a sua tramitação desde que foi criado' do
-    logar create(:user, role: 'admin')
+    login_as(create(:user, role: 'admin'), :scope => :user)
 
     setor_1 = create(:setor, nome: 'setor_1')
     setor_2 = create(:setor, nome: 'setor_2')
@@ -73,7 +73,7 @@ feature 'gerenciar processo' do
   end
 
   scenario 'processo deve ter conhecimento de seus despachos' do
-    logar create(:user, role: 'admin')
+    login_as(create(:user, role: 'admin'), :scope => :user)
     
     processo = create(:processo)
 

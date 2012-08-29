@@ -7,13 +7,13 @@ feature "Cadastrar Solicitante" do
     visit new_solicitante_path
     page.should have_content 'Você não tem permissão para acessar esse conteudo.'
 
-    logar create(:user, role: 'admin')
+    login_as(create(:user, role: 'admin'), :scope => :user)
     visit new_solicitante_path
     page.should have_content 'Cadastrar Solicitante'
   end
 
   scenario 'Criação padrão' do
-    logar create(:user, role: 'admin')
+    login_as(create(:user, role: 'admin'), :scope => :user)
     
     create :setor, nome: 'Setor 1'
     create :setor, nome: 'Setor 2'

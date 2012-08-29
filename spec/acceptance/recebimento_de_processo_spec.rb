@@ -8,13 +8,13 @@ feature 'recebimento de processo' do
     current_path.should_not == receber_processos_path
     page.should have_content 'Você não tem permissão para acessar esse conteudo.'
 
-    logar create(:user, role: 'admin')
+    login_as(create(:user, role: 'admin'), :scope => :user)
     visit receber_processos_path
     current_path.should == receber_processos_path
   end
 
   scenario 'padrão', js: true do
-    logar create(:user, role: 'admin')
+    login_as(create(:user, role: 'admin'), :scope => :user)
     
     setor1 = create :setor, nome: 'Setor 1'
     create :setor, nome: 'Setor 2'

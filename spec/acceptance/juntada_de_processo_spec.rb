@@ -22,7 +22,7 @@ feature 'Juntada de processo' do
     current_path.should_not == desanexar_juntadas_path
     page.should have_content 'Você não tem permissão para acessar esse conteudo.'
 
-    logar create(:user, role: 'admin')
+    login_as(create(:user, role: 'admin'), :scope => :user)
 
     visit new_juntada_path
     current_path.should == new_juntada_path
@@ -35,7 +35,7 @@ feature 'Juntada de processo' do
   end
 
   scenario 'Realizar juntada de processos', js: true do
-    logar create(:user, role: 'admin')
+    login_as(create(:user, role: 'admin'), :scope => :user)
 
     visit new_juntada_path
     fill_in 'processo_principal', with: '00001/12'
@@ -54,7 +54,7 @@ feature 'Juntada de processo' do
   end
 
   scenario 'Desapensar Processo de Juntada', js: true do
-    logar create(:user, role: 'admin')
+    login_as(create(:user, role: 'admin'), :scope => :user)
     
     create(:juntada, tipo: "Apensar", processo_principal: @processo_1, processos: [@processo_2, @processo_3])
 
@@ -69,7 +69,7 @@ feature 'Juntada de processo' do
   end
 
   scenario 'Desanexar Processo de Juntada', js: true do
-    logar create(:user, role: 'admin')
+    login_as(create(:user, role: 'admin'), :scope => :user)
     
     create(:juntada, tipo: "Anexar", processo_principal: @processo_1, processos: [@processo_2, @processo_3])
 

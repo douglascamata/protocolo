@@ -8,7 +8,7 @@ feature "reabrir processo" do
   end
 
   scenario 'processos encerrados devem ser mostrados relativamente ao setor selecionado', js: true do
-    logar(create :user, role: 'admin')
+    login_as(create(:user, role: 'admin'), :scope => :user)
 
     setor1 = create :setor, nome: 'Setor 1'
     no_ano(2012) do 
