@@ -3,8 +3,7 @@ require 'spec_helper'
 describe User do
   describe "#admin?" do
     it "deve retornar true caso positivo" do
-      user = create :user, role: 'admin'
-      user.admin?.should be_true
+      create(:user, role: 'admin').admin?.should be_true
     end
   end
 
@@ -19,7 +18,6 @@ describe User do
     it "deve retornar se o processo pertence ao mesmo setor q o seu" do
       processo = create :processo
       user = create :user_solicitante
-      setor = user.setores.first
 
       user.no_meu_setor?(processo).should == false
 
