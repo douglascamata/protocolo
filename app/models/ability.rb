@@ -10,7 +10,7 @@ class Ability
       can :manage, :all
     elsif user.solicitante?
       can [:create, :read], Processo
-      can [:encerrar], Processo do |processo|
+      can [:encerrar, :reabrir], Processo do |processo|
         user.no_meu_setor? processo
       end
     end
