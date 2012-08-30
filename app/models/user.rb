@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   end
 
   def solicitante?
-    self.solicitante.nil? ? false : true
+    !self.solicitante.nil?
   end
 
   def no_meu_setor?(processo)
