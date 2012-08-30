@@ -9,14 +9,12 @@ feature 'enviar processos', js: true do
     @setor_3 = create :setor, nome: 'Setor_3'
   end
 
-  scenario 'autorização como admin' do
+  scenario 'autorização' do
     visit new_tramitacao_path
     current_path.should_not == new_tramitacao_path
     page.should have_content 'Você não tem permissão para acessar esse conteudo.'
-
-    login_as(create(:user, role: 'admin'), :scope => :user)
-    visit new_tramitacao_path
-    current_path.should == new_tramitacao_path
+    
+  
   end
 
   scenario 'nova tramitação sem usuario destino' do
@@ -69,5 +67,27 @@ feature 'enviar processos', js: true do
     page.should have_content 'Setor_2'
     page.should have_content 'Setor_3'
     page.should have_content '00001/12'
+  end
+
+  scenario 'processo deve ter conhecimento de toda a sua tramitação desde que foi criado' do
+    login_as(create(:user, role: 'admin'), :scope => :user)
+
+    setor_1 = create(:setor, nome: 'setor_1')
+    setor_2 = create(:setor, nome: 'setor_2')
+    setor_3 = create(:setor, nome: 'setor_3')
+    setor_4 = create(:setor, nome: 'setor_4')
+    processo = create(:processo, setor_origem: setor_1, destino_inicial: setor_4)
+
+    create :tramitacao, setor_origem: setor_1, setor_destino: setor_2, processo: processo
+    create :tramitacao, setor_origem: setor_2, setor_destino: setor_3, processo: processo
+    create :tramitacao, setor_origem: setor_3, setor_destino: setor_4, processo: processo
+
+    visit processo_path(processo)
+    page.should have_content '00001/12'
+    page.should have_content 'Tramitações'
+    page.should have_content 'setor_1'
+    page.should have_content 'setor_2'
+    page.should have_content 'setor_3'
+    page.should have_content 'setor_4'
   end
 end
