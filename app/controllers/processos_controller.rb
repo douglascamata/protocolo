@@ -1,6 +1,6 @@
 class ProcessosController < InheritedResources::Base
   actions :new, :create, :show
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:aguardando_recebimento, :aguardando_reabrimento, :buscar]
 
   def receber
     if params[:id] # PUT receber_processo_path(:id)
