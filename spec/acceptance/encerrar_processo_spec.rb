@@ -3,7 +3,7 @@ require 'spec_helper'
 
 feature "encerrar processo" do
 
-  scenario 'autorização como admin' do
+  scenario 'autorização' do
     visit encerrar_processos_path
     current_path.should_not == encerrar_processos_path
     page.should have_content 'Você não tem permissão para acessar esse conteudo.'
