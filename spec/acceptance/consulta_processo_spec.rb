@@ -11,7 +11,6 @@ feature 'consulta de processos' do
     2.times{ create :processo, requerente: requerente, interessado: interessado, setor_origem: origem, tipo_solicitacao: tipo }
 
     visit consultar_processos_path
-    save_and_open_page
 
     fill_in 'q[numero_protocolo_cont]', with: '00001/12'
     click_button 'Pesquisar'
