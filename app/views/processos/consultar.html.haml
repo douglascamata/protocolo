@@ -1,0 +1,38 @@
+=search_form_for @q, :url => consultar_processos_path do |f|
+	%fieldset
+		%legend Numero de Protocolo	
+		= f.text_field :numero_protocolo_cont, label: 'protocolo'
+	%fieldset
+		%legend Estado
+		= f.select :estado_eq, options_for_select([''] + Processo.all.map{|p| [p.estado]}.uniq)
+	%fieldset
+		%legend Data inicial
+		= f.date_select :created_at_gteq, :include_blank => true
+	%fieldset
+		%legend Data final
+		= f.date_select :created_at_lt, :include_blank => true
+
+	%fieldset
+		%legend Requerente
+		= f.text_field :requerente_nome_cont, label: 'Requerente'
+
+	%fieldset
+		%legend Interessado
+		= f.text_field :interessado_nome_cont
+
+	%fieldset
+		%legend Tipo de solicitação
+		= f.select :tipo_solicitacao_id_eq, options_for_select([['', -1]] + TipoSolicitacao.all.map{|t| [t.descricao, t.id]})
+
+	%fieldset
+		%legend Setor de Origem
+		= f.select :setor_origem_id_eq, options_for_select([['', -1]] + Setor.all.map{|s| [s.nome, s.id]})
+
+	%fieldset
+		%legend Setor de Destino
+		= f.select :destino_inicial_id_eq, options_for_select([['', -1]] + Setor.all.map{|s| [s.nome, s.id]})
+
+	=f.submit 'Pesquisar'
+
+=render 'resultado_busca'
+
