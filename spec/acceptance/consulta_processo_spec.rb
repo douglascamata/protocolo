@@ -10,7 +10,9 @@ feature 'consulta de processos' do
     tipo = create :tipo_solicitacao, descricao: 'tipo_1'
     2.times{ create :processo, requerente: requerente, interessado: interessado, setor_origem: origem, tipo_solicitacao: tipo }
 
-    visit processos_path
+    visit consultar_processos_path
+    save_and_open_page
+
     fill_in 'q[numero_protocolo_cont]', with: '00001/12'
     click_button 'Pesquisar'
 
@@ -20,6 +22,7 @@ feature 'consulta de processos' do
       page.should have_content 'requerente_1'
       page.should have_content 'interessado_1'
       page.should have_content 'tipo_1'
+      page.should have_content 'criado'
       page.should_not have_content '00002/12'
     end
   end
@@ -29,7 +32,7 @@ feature 'consulta de processos' do
     Timecop.freeze(2012, 7, 27, 11, 12, 11) {2.times{create :processo}}
     Timecop.freeze(2012, 7, 29, 11, 12, 11) {2.times{create :processo}}
 
-    visit processos_path
+    visit consultar_processos_path
     within_fieldset 'Data inicial' do
       select '28', on: 'q_created_at_gteq_3i'
       select 'Julho', on: 'q_created_at_gteq_2i'
@@ -54,13 +57,33 @@ feature 'consulta de processos' do
     end
   end
 
+  scenario 'consultar processos por estado' do
+    processo_1 = create :processo
+    processo_2 = create :processo
+    setor = create :setor, nome: 'Setor destino'
+    receber_processo_em(processo_1, setor)
+    
+    visit consultar_processos_path
+    
+    within_fieldset 'Estado' do
+      select 'recebido', from: 'q[estado_eq]'
+    end
+    click_button 'Pesquisar'
+
+    within_fieldset 'Resultados da busca' do
+      page.should have_content '00001/12'
+      page.should have_content 'Setor destino'
+      page.should_not have_content '00002/12'
+    end
+  end
+
   scenario 'consultar processos apenas por requerente' do
     requerente = create :solicitante, nome: 'Linus'
     requerente_2 = create :solicitante, nome: 'Goku'
     4.times{create :processo, requerente: requerente}
     create :processo, requerente: requerente_2
 
-    visit processos_path
+    visit consultar_processos_path
     within_fieldset 'Requerente' do
       fill_in 'q[requerente_nome_cont]', with: 'Linus'
     end
@@ -83,7 +106,7 @@ feature 'consulta de processos' do
     4.times{create :processo, interessado: interessado_1}
     create :processo, interessado: interessado_2
 
-    visit processos_path
+    visit consultar_processos_path
     within_fieldset 'Interessado' do
       fill_in 'q[interessado_nome_cont]', with: 'Matz'
     end
@@ -106,7 +129,7 @@ feature 'consulta de processos' do
     4.times{create :processo, tipo_solicitacao: tipo}
     create :processo, tipo_solicitacao: tipo_2
 
-    visit processos_path
+    visit consultar_processos_path
     within_fieldset 'Tipo de solicitação' do
       select 'Complicado', from: 'q[tipo_solicitacao_id_eq]'
     end
@@ -129,7 +152,7 @@ feature 'consulta de processos' do
     2.times{create :processo, setor_origem: origem_1}
     create :processo, setor_origem: origem_2
 
-    visit processos_path
+    visit consultar_processos_path
     within_fieldset 'Setor de Origem' do
       select 'setor_1', from: 'q[setor_origem_id_eq]'
     end
@@ -150,7 +173,7 @@ feature 'consulta de processos' do
     2.times{create :processo, destino_inicial: destino_1}
     create :processo, destino_inicial: destino_2
 
-    visit processos_path
+    visit consultar_processos_path
     within_fieldset 'Setor de Destino' do
       select 'setor_destino_1', from: 'q[destino_inicial_id_eq]'
     end
