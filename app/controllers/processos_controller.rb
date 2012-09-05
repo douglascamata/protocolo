@@ -46,7 +46,7 @@ class ProcessosController < InheritedResources::Base
     respond_to :js
   end
 
-  def index
+  def consultar
     if params[:q]
       params[:q].delete_if{|key, value| value == "-1" || value == ""}
     end
