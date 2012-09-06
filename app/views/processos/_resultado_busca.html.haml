@@ -1,0 +1,30 @@
+%fieldset
+  %legend Resultados da busca
+  %table{border: '1'}
+    %thead
+      %tr
+        %th Numero Protocolo
+        %th Data de Criação
+        %th Tipo de Solicitação
+        %th Requerente
+        %th Interessado
+        %th Localização Atual
+        %th Status
+      %tbody
+        -@processo.each do |processo|
+          %tr
+            %td
+              = processo.numero_protocolo
+            %td
+              = processo.created_at.strftime("%d/%m/%y")
+            %td
+              = processo.tipo_solicitacao.descricao
+            %td
+              = processo.requerente.nome
+            %td
+              = processo.interessado.try(:nome)
+            %td
+              = processo.setor_atual.nome
+            %td
+              = processo.estado
+

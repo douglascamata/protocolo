@@ -1,7 +1,6 @@
 %h1 Recebimento de processo
 
 = semantic_form_for '#' do |f|
-  = f.input :setor_destino, label: 'Destino atual', collection: (@setores.map {|s| [s.nome, s.id] }), 
-                            input_html: {class: 'selecionar_e_procurar', data: {url: aguardando_recebimento_processos_path}}
+  = f.input :setor_destino, label: 'Destino atual', collection: (@setores.map {|s| [s.nome, s.id] }), input_html: {class: 'selecionar_e_procurar', data: {url: aguardando_recebimento_processos_path}}
 
 #processos_aguardando_recebimento
