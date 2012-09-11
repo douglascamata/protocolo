@@ -11,7 +11,6 @@ ssh_options[:port] = 22
 
 set :repository,  "https://github.com/cciuenf/protocolo.git"
 set :scm, :git
-set :scm_verbose, true
 
 role :web, domain
 role :app, domain
@@ -21,10 +20,12 @@ set :normalize_asset_timestamps, false
 
 require "rvm/capistrano"
 require "bundler/capistrano"
-$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
+set :bundle_without,  [:development]
 set :rvm_install_type, :head
 set :rvm_install_ruby_params, '--1.9'      # for jruby/rbx default to 1.9 mode
-set :rvm_ruby_string, "ruby-1.9.3-p194@protocolo"
+set :rvm_ruby_string, "1.9.3@protocolo"
+set :rvm_install_ruby, :install
+set :rvm_install_shell, :bash
 
 default_environment["RAILS_ENV"] = 'production'
 
@@ -43,7 +44,7 @@ end
 
 namespace :bundle do
   task :install do
-    run "cd #{release_path} && bundle install --without test development --deployment"
+    run "cd #{release_path} && bundle install --without test development"
   end
 end
 
