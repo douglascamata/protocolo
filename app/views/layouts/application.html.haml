@@ -31,16 +31,41 @@
               - if user_signed_in? && current_user.admin?
                 %li.dropdown
                   %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                    Cadastro
+                    Processo
                     %b.caret
                   %ul.dropdown-menu
                     %li
-                      %a{:href => new_setor_path} Setor
+                      %a{:href => new_processo_path} Novo
                     %li
-                      %a{:href => new_solicitante_path} Solicitante
-                 
-              %li= link_to "Link 2", "/path2"
-              %li= link_to "Link 3", "/path3"
+                      %a{:href => consultar_processos_path} Consultar
+                    %li
+                      %a{:href => encerrar_processos_path} Encerrar
+                    %li
+                      %a{:href => receber_processos_path} Receber
+                    %li
+                      %a{:href => reabrir_processos_path} Reabrir
+                %li.dropdown
+                  %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                    Setor
+                    %b.caret
+                  %ul.dropdown-menu
+                    %li
+                      %a{:href => new_setor_path} Novo
+                %li.dropdown
+                  %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                    Solicitante
+                    %b.caret
+                  %ul.dropdown-menu
+                    %li
+                      %a{:href => new_solicitante_path} Novo
+                %li.dropdown
+                  %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                    Tramitações
+                    %b.caret
+                  %ul.dropdown-menu
+                    %li
+                      %a{:href => new_tramitacao_path} Novo
+
             %ul.nav.pull-right
               %li= user_signed_in? ? link_to("#{current_user.email} - Logout", destroy_user_session_path, :method => :delete) : link_to('Login', new_user_session_path)
 
@@ -59,7 +84,7 @@
                 %li= link_to "Link 1", "/path1"
                 %li= link_to "Link 2", "/path2"
                 %li= link_to "Link 3", "/path3"
-    
+
       %footer
         %p &copy; Company 2012
     /
@@ -67,3 +92,4 @@
       \==================================================
     / Placed at the end of the document so the pages load faster
     = javascript_include_tag "application"
+
