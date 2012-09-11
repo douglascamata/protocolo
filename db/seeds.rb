@@ -9,6 +9,7 @@ processo_2 = Processo.create! conteudo: "meu conteudo", requerente: Solicitante.
 processo_3 = Processo.create! conteudo: "meu conteudo", requerente: Solicitante.first, interessado: Solicitante.all.second, setor_origem: Setor.first, destino_inicial: Setor.all.second, tipo_solicitacao: TipoSolicitacao.first
 Juntada.create! processo_principal: processo_1, processos: [processo_2, processo_3], tipo: "Anexar"
 Juntada.create! processo_principal: processo_2, processos: [processo_1, processo_3], tipo: "Apensar"
+Factory.create :user_admin
 
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
