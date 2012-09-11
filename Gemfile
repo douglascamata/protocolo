@@ -19,7 +19,7 @@ group :assets do
   gem 'therubyracer', :platform => :ruby
   gem 'execjs'
   gem 'uglifier', '>= 1.0.3'
-  gem "twitter-bootstrap-rails"
+  gem "twitter-bootstrap-rails", "~> 2.1.3"
 end
 
 group :development, :test do
