@@ -49,8 +49,8 @@ namespace :bundle do
 end
 
 namespace :db do
-  task :create do; run "cd #{release_path}; rake db:create"; end
-  task :migrate do; run "cd #{release_path}; rake db:migrate"; end
+  task :create do; run "cd #{release_path}; bundle exec rake db:create"; end
+  task :migrate do; run "cd #{release_path}; bundle exec rake db:migrate"; end
 end
 
 namespace :deploy do
