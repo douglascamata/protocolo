@@ -12,6 +12,7 @@ gem 'formtastic', '~> 2.2.0'
 gem 'jquery-rails'
 gem 'state_machine'
 gem 'ransack'
+gem 'formtastic-bootstrap'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -20,7 +21,6 @@ group :assets do
   gem 'execjs'
   gem 'uglifier', '>= 1.0.3'
   gem 'twitter-bootstrap-rails', '~> 2.1.3'
-  gem 'formtastic-bootstrap'
 end
 
 group :development, :test do
