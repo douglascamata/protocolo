@@ -3,8 +3,10 @@
   %table{class: 'table table-striped'}
     %thead
       %tr
-        %th Numero Protocolo
-        %th Data de Criação
+        %th 
+          = sort_link @q, :numero_protocolo, 'Numero protocolo'
+        %th 
+          = sort_link @q, :created_at, 'Data de Criação'
         %th Tipo de Solicitação
         %th Requerente
         %th Interessado
@@ -14,7 +16,7 @@
         -@processo.each do |processo|
           %tr
             %td
-              = processo.numero_protocolo
+              = link_to processo.numero_protocolo, processo
             %td
               = processo.created_at.strftime("%d/%m/%y")
             %td
