@@ -21,6 +21,7 @@ group :assets do
   gem 'execjs'
   gem 'uglifier', '>= 1.0.3'
   gem 'twitter-bootstrap-rails', '~> 2.1.3'
+  gem 'jquery-ui-rails'
 end
 
 group :development, :test do
