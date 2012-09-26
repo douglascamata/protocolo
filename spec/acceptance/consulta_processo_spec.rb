@@ -12,7 +12,8 @@ feature 'consulta de processos' do
 
     visit consultar_processos_path
 
-    fill_in 'q[numero_protocolo_cont]', with: '00001/12'
+    fill_in 'Numero protocolo', with: '00001/12'
+    
     click_button 'Pesquisar'
 
     within_fieldset 'Resultados da busca' do
@@ -32,16 +33,9 @@ feature 'consulta de processos' do
     Timecop.freeze(2012, 7, 29, 11, 12, 11) {2.times{create :processo}}
 
     visit consultar_processos_path
-    within_fieldset 'Data inicial' do
-      select '28', on: 'q_created_at_gteq_3i'
-      select 'Julho', on: 'q_created_at_gteq_2i'
-      select '2012', on: 'q_created_at_gteq_1i'
-    end
-    within_fieldset 'Data final' do
-      select '29', on: 'q_created_at_lt_3i'
-      select 'Julho', on: 'q_created_at_lt_2i'
-      select '2012', on: 'q_created_at_lt_1i'
-    end
+    fill_in 'data inicial', with: '28/07/2012'
+    fill_in 'data final', with: '29/07/2012'
+
     click_button 'Pesquisar'
 
     within_fieldset 'Resultados da busca' do
@@ -64,9 +58,9 @@ feature 'consulta de processos' do
     
     visit consultar_processos_path
     
-    within_fieldset 'Estado' do
-      select 'recebido', from: 'q[estado_eq]'
-    end
+
+    select 'recebido', from: 'q_estado_eq'
+
     click_button 'Pesquisar'
 
     within_fieldset 'Resultados da busca' do
@@ -83,9 +77,8 @@ feature 'consulta de processos' do
     create :processo, requerente: requerente_2
 
     visit consultar_processos_path
-    within_fieldset 'Requerente' do
-      fill_in 'q[requerente_nome_cont]', with: 'Linus'
-    end
+    
+    fill_in 'Requerente', with: 'Linus'  
     click_button 'Pesquisar'
 
     within_fieldset 'Resultados da busca' do
@@ -106,9 +99,9 @@ feature 'consulta de processos' do
     create :processo, interessado: interessado_2
 
     visit consultar_processos_path
-    within_fieldset 'Interessado' do
-      fill_in 'q[interessado_nome_cont]', with: 'Matz'
-    end
+    
+    fill_in 'Interessado', with: 'Matz'
+    
     click_button 'Pesquisar'
 
     within_fieldset 'Resultados da busca' do
@@ -129,9 +122,9 @@ feature 'consulta de processos' do
     create :processo, tipo_solicitacao: tipo_2
 
     visit consultar_processos_path
-    within_fieldset 'Tipo de solicitação' do
-      select 'Complicado', from: 'q[tipo_solicitacao_id_eq]'
-    end
+    
+    select 'Complicado', from: 'q_tipo_solicitacao_id_eq'
+    
     click_button 'Pesquisar'
 
     within_fieldset 'Resultados da busca' do
@@ -152,9 +145,9 @@ feature 'consulta de processos' do
     create :processo, setor_origem: origem_2
 
     visit consultar_processos_path
-    within_fieldset 'Setor de Origem' do
-      select 'setor_1', from: 'q[setor_origem_id_eq]'
-    end
+  
+    select 'setor_1', from: 'q_setor_origem_id_eq'
+  
     click_button 'Pesquisar'
 
     within_fieldset 'Resultados da busca' do
@@ -173,9 +166,9 @@ feature 'consulta de processos' do
     create :processo, destino_inicial: destino_2
 
     visit consultar_processos_path
-    within_fieldset 'Setor de Destino' do
-      select 'setor_destino_1', from: 'q[destino_inicial_id_eq]'
-    end
+    
+    select 'setor_destino_1', from: 'q_destino_inicial_id_eq'
+    
     click_button 'Pesquisar'
 
     within_fieldset 'Resultados da busca' do
@@ -183,6 +176,21 @@ feature 'consulta de processos' do
       page.should have_content '00002/12'
       page.should_not have_content '00003/12'
     end
+  end
+
+  scenario 'a consulta deve fornecer um link para o processo' do
+    login_as(create(:user, role: 'admin'), :scope => :user)  
+    processo = create :processo
+    
+    visit consultar_processos_path
+    fill_in 'Numero protocolo', with: '00001/12'
+    
+    within_fieldset 'Resultados da busca' do
+      page.should have_content '00001/12'
+    end
+    
+    click_link '00001/12'
+    current_path.should == processo_path(processo)
   end
 
 end
