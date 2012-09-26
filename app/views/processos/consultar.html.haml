@@ -1,32 +1,34 @@
-=search_form_for @q, :url => consultar_processos_path do |f|
-	= f.label 'Numero de Protocolo'
-	= f.text_field :numero_protocolo_cont, label: 'protocolo'
-	
-	= f.label 'Estado'
-	= f.select :estado_eq, options_for_select([''] + Processo.all.map{|p| [p.estado]}.uniq)
-	
-	= f.label 'Data inicial'
-	= f.date_select :created_at_gteq, :include_blank => true
-	
-	= f.label 'Data final'
-	= f.date_select :created_at_lt, :include_blank => true
+.container
+	.span2
+		=search_form_for @q, :url => consultar_processos_path do |f|
+			= f.label 'Numero de Protocolo'
+			= f.text_field :numero_protocolo_cont, label: 'protocolo', id: 'Numero protocolo'
 
-	= f.label 'Requerente'
-	= f.text_field :requerente_nome_cont, label: 'Requerente'
+			= f.label 'Estado'
+			= f.select :estado_eq, options_for_select([''] + Processo.all.map{|p| [p.estado]}.uniq)
 
-	= f.label 'Interessado'
-	= f.text_field :interessado_nome_cont
+			= f.label 'Data inicial'
+			= f.text_field :created_at_gteq, class: 'calendario', id: 'data inicial'
 
-	= f.label 'Tipo de solicitação'
-	= f.select :tipo_solicitacao_id_eq, options_for_select([['', -1]] + TipoSolicitacao.all.map{|t| [t.descricao, t.id]})
+			= f.label 'Data final'
+			= f.text_field :created_at_lteq, class: 'calendario', id: 'data final'
 
-	= f.label 'Setor de Origem'
-	= f.select :setor_origem_id_eq, options_for_select([['', -1]] + Setor.all.map{|s| [s.nome, s.id]})
+			= f.label 'Requerente'
+			= f.text_field :requerente_nome_cont, id: 'Requerente'
 
-	= f.label 'Setor de Destino'
-	= f.select :destino_inicial_id_eq, options_for_select([['', -1]] + Setor.all.map{|s| [s.nome, s.id]})
-	%br
-	=f.submit 'Pesquisar'
+			= f.label 'Interessado'
+			= f.text_field :interessado_nome_cont, id: 'Interessado'
 
-=render 'resultado_busca'
+			= f.label 'Tipo de solicitação'
+			= f.select :tipo_solicitacao_id_eq, options_for_select([['', -1]] + TipoSolicitacao.all.map{|t| [t.descricao, t.id]})
+
+			= f.label 'Setor de Origem'
+			= f.select :setor_origem_id_eq, options_for_select([['', -1]] + Setor.all.map{|s| [s.nome, s.id]})
+
+			= f.label 'Setor de Destino'
+			= f.select :destino_inicial_id_eq, options_for_select([['', -1]] + Setor.all.map{|s| [s.nome, s.id]})
+			%br
+			=f.submit 'Pesquisar'
+	.offset3
+		=render 'resultado_busca'
 
