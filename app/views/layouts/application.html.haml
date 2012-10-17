@@ -65,9 +65,25 @@
                   %ul.dropdown-menu
                     %li
                       %a{:href => new_tramitacao_path} Novo
+                %li.dropdown
+                  %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                    Administrador
+                    %b.caret
+                  %ul.dropdown-menu
+                    %li
+                      %a{:href => new_user_path} Novo
 
             %ul.nav.pull-right
-              %li= user_signed_in? ? link_to("#{current_user.email} - Logout", destroy_user_session_path, :method => :delete) : link_to('Login', new_user_session_path)
+              - if user_signed_in? 
+                %li.dropdown
+                  %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                    = current_user.email
+                    %b.caret
+                  %ul.dropdown-menu
+                    %li= link_to "Editar", edit_user_registration_path
+                    %li= link_to "Logout", destroy_user_session_path
+              - else
+                %li= link_to('Login', new_user_session_path)
 
     .container
 
