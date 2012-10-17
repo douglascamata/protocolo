@@ -1,8 +1,8 @@
 Protocolo::Application.routes.draw do
 
+  devise_for :user
+  
   resources :users, only: [:new, :create, :show]
-
-  devise_for :users
 
   root to: 'home#index'
 
