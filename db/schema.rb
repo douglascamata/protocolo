@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120829194253) do
+ActiveRecord::Schema.define(:version => 20121017170406) do
 
   create_table "despachos", :force => true do |t|
     t.text     "conteudo"
@@ -73,7 +73,6 @@ ActiveRecord::Schema.define(:version => 20120829194253) do
     t.datetime "updated_at", :null => false
     t.string   "endereco"
     t.string   "telefone"
-    t.string   "email"
     t.string   "matricula"
     t.integer  "user_id"
   end
