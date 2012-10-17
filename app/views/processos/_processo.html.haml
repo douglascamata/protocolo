@@ -27,6 +27,9 @@
     = processo.conteudo
 
   %p
+    %b Estado:
+    = processo.try(:estado).humanize
+  %p
     %b Encerrado em:
     = processo.data_hr_encerramento.try(:strftime, "%d/%m/%y - %T")
   %p
