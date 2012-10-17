@@ -28,7 +28,7 @@
           %a.brand(href= root_path) Protocolo
           .container.nav-collapse
             %ul.nav
-              - if user_signed_in? && current_user.admin?
+              - if user_signed_in?
                 %li.dropdown
                   %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
                     Processo
@@ -39,18 +39,15 @@
                     %li
                       %a{:href => consultar_processos_path} Consultar
                     %li
-                      %a{:href => encerrar_processos_path} Encerrar
+                      %a{:href => new_tramitacao_path} Enviar
                     %li
                       %a{:href => receber_processos_path} Receber
                     %li
-                      %a{:href => reabrir_processos_path} Reabrir
-                %li.dropdown
-                  %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                    Setor
-                    %b.caret
-                  %ul.dropdown-menu
+                      %a{:href => encerrar_processos_path} Encerrar
                     %li
-                      %a{:href => new_setor_path} Novo
+                      %a{:href => reabrir_processos_path} Reabrir
+
+              - if user_signed_in? && current_user.admin?
                 %li.dropdown
                   %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
                     Solicitante
@@ -60,18 +57,18 @@
                       %a{:href => new_solicitante_path} Novo
                 %li.dropdown
                   %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                    Tramitações
-                    %b.caret
-                  %ul.dropdown-menu
-                    %li
-                      %a{:href => new_tramitacao_path} Novo
-                %li.dropdown
-                  %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
                     Administrador
                     %b.caret
                   %ul.dropdown-menu
                     %li
                       %a{:href => new_user_path} Novo
+                %li.dropdown
+                  %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                    Setor
+                    %b.caret
+                  %ul.dropdown-menu
+                    %li
+                      %a{:href => new_setor_path} Novo
 
             %ul.nav.pull-right
               - if user_signed_in? 
