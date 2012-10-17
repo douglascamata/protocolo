@@ -19,7 +19,7 @@ feature "Cadastro usuario" do
     click_button 'Salvar'
 
     page.should have_content 'Administrador criado com sucesso!'
-    page.should have_content 'Admin'
+    page.should have_content 'Papel: Administrador'
     page.should have_content 'admin@email.com'
   end
 end
