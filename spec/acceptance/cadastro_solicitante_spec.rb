@@ -20,8 +20,10 @@ feature "Cadastrar Solicitante" do
     create :setor, nome: 'Setor 3'
 
     visit new_solicitante_path
+    fill_in 'Email', with: 'solicitante@email.com'
+    fill_in 'Password', with: '123456'
+    
     fill_in 'Matricula', with: '0000001'
-    fill_in 'Email', with: 'Meu_email@gmail.br'
     fill_in 'Nome', with: 'Nome_1'
     fill_in 'Endereço', with: 'Meu endereço'
     fill_in 'Telefone', with: '12345678'
@@ -31,8 +33,10 @@ feature "Cadastrar Solicitante" do
     click_button 'Salvar'
 
     page.should have_content 'Solicitante criado com sucesso!'
+    page.should have_content 'Papel: Solicitante'
+    page.should have_content 'solicitante@email.com'
+
     page.should have_content '0000001'
-    page.should have_content 'Meu_email@gmail.br'
     page.should have_content 'Nome_1'
     page.should have_content 'Meu endereço'
     page.should have_content '12345678'

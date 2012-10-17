@@ -12,8 +12,6 @@ class User < ActiveRecord::Base
   has_one :solicitante
   has_many :setores, :through => :solicitante
 
-  ROLES = %w[admin solicitante]
-
   def admin?
     role == 'admin'
   end
@@ -24,5 +22,13 @@ class User < ActiveRecord::Base
 
   def no_meu_setor?(processo)
     self.setores.include? processo.setor_atual
+  end
+
+  def papel
+    if self.admin?
+      :administrador
+    elsif self.solicitante?
+      :solicitante
+    end
   end
 end

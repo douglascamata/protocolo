@@ -1,3 +1,5 @@
+%h1 Solicitante
+
 %p
   %b Matricula:
   = @solicitante.matricula
@@ -7,9 +9,7 @@
 %p
   %b Telefone:
   = @solicitante.telefone
-%p
-  %b Email:
-  = @solicitante.email
+
 %p
   %b Endereço:
   = @solicitante.endereco
@@ -17,3 +17,5 @@
   -@solicitante.setores.each do |setor|
     %b
     = setor.nome
+%p
+  = render @solicitante.user

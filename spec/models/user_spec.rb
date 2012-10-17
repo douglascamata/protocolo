@@ -25,4 +25,13 @@ describe User do
       user.no_meu_setor?(processo).should == true
     end
   end
+
+  describe "#papel" do
+    it "deve retornar ':solicitante' caso user tiver um solicitante" do
+      create(:user_solicitante).papel.should == :solicitante
+    end
+    it "deve retornar ':administrador' caso user for um admin" do
+      create(:user_admin).papel.should == :administrador
+    end
+  end
 end

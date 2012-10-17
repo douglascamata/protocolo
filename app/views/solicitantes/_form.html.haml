@@ -1,9 +1,12 @@
 = semantic_form_for @solicitante do |f|
   = f.input :matricula, label: 'Matricula'
   = f.input :nome, label: 'Nome'
-  = f.input :email, label: 'Email', :as => :email
   = f.input :telefone, label: 'Telefone', :as => :phone
   = f.input :endereco, label: 'Endereço'
   = f.input :setores, as: :check_boxes, collection: Setor.all.map{|s| [s.nome, s.id]}, label: 'Setores'
+
+  = f.semantic_fields_for :user do |user|
+    = user.input :email
+    = user.input :password
 
   = f.submit 'Salvar'
