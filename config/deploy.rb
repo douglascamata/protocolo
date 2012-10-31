@@ -5,7 +5,7 @@ set :user, "deploy"
 set :use_sudo, false
 set :keep_releases, 3
 
-default_run_options[:pty] = true # allow pseudo-terminals
+# default_run_options[:pty] = true # allow pseudo-terminals
 ssh_options[:forward_agent] = true # forward SSH keys (this will use your SSH key to get the code from git repository)
 ssh_options[:port] = 22
 
