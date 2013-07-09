@@ -23,7 +23,7 @@ require "bundler/capistrano"
 set :bundle_without,  [:development]
 set :rvm_install_type, :head
 set :rvm_install_ruby_params, '--1.9'      # for jruby/rbx default to 1.9 mode
-set :rvm_ruby_string, "2.0.0-p247@protocolo"
+set :rvm_ruby_string, "1.9.3@protocolo"
 set :rvm_install_ruby, :install
 set :rvm_install_shell, :bash
 
