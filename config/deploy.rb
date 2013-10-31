@@ -1,7 +1,7 @@
 set :application, "protocolo"
 set :domain, "162.243.75.8"
-set :deploy_to, "/root/#{application}"
-set :user, "root"
+set :deploy_to, "/home/deploy/#{application}"
+set :user, "deploy"
 set :use_sudo, false
 set :keep_releases, 3
 
