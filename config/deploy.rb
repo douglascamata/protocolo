@@ -22,7 +22,7 @@ require "rvm/capistrano"
 require "bundler/capistrano"
 set :bundle_without,  [:development]
 set :rvm_install_type, :head
-set :rvm_ruby_string, "2.0.04@protocolo"
+set :rvm_ruby_string, "2.0.0@protocolo"
 set :rvm_install_ruby, :install
 set :rvm_install_shell, :bash
 
