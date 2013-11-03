@@ -1,5 +1,5 @@
 set :application, "protocolo"
-set :domain, "162.243.75.8"
+set :domain, "162.243.75.178"
 set :deploy_to, "/home/deploy/#{application}"
 set :user, "deploy"
 set :use_sudo, false
@@ -36,7 +36,7 @@ namespace :utils do
     run "cd #{latest_release}; bundle exec rake db:seed"
   end
   task :copy_config_file do
-    run "cat /root/.protocolo/database.yml > #{latest_release}/config/database.yml"
+    run "cat ~/.protocolo/database.yml > #{latest_release}/config/database.yml"
     # run "cat ~/.protocolo/mail.yml > #{latest_release}/config/mail.yml"
   end
 end
